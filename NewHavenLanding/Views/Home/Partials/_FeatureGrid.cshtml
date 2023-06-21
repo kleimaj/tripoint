@@ -1,0 +1,82 @@
+﻿@{
+    var features = new List<Tuple<string, string>> {
+        new(string.Empty, string.Empty),
+        new("A fixed rate as", "low as <6.99%>"),
+        new("Clear, upfront", "terms"),
+        new("An easy,", "secure process"),
+        new("A quick approval and", "next-day funding"),
+        new("No prepayment", "penalty"),
+        new(string.Empty, string.Empty)
+    };
+}
+
+<div class="features-header">
+    <span>Borrowers rely on New Haven for personal loans with:</span>
+</div>
+
+<div class="features-grid">
+    @foreach (var feature in features.Where(feature => !string.IsNullOrEmpty(feature.Item1))) {
+        <div class="features-grid-flex">
+            <div class="features-box">
+                <div class="features-box-grid">
+                    <picture>
+                        <source type="image/webp" srcset="images/checkmark.webp">
+                        <img alt="checkmark" src="images/checkmark.png">
+                    </picture>
+                    <div>
+                        <p>@feature.Item1</p>
+                        <p>@feature.Item2</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<style asp-add-nonce="true">
+    .features-header {
+        font-size: 1.5em;
+        text-align: center;
+        padding-bottom: 20px;
+        padding-top: 40px;
+        background-color: #ebebeb;
+    }
+    .features-grid {
+        display: flex;
+        grid-column-gap: 8px;
+        grid-row-gap: 8px;
+        background-color: #ebebeb;
+        padding-bottom: 40px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: center;
+    }
+    .features-grid-flex {
+        flex: 1 0 0;
+    }
+    .features-box-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 1fr;
+        grid-column-gap: 0;
+        grid-row-gap: 0;
+    }
+    .features-box-grid img {
+        margin-left: auto;
+        padding-right: 8px;
+        width: 60px;
+        height: 44px;
+    }
+    .features-box {
+        margin: 0 0 5px 0;
+        padding: 10px;
+        min-height: 100%;
+    }
+    .features-box p {
+        margin-bottom: 0;
+        margin-top: 0;
+        text-align: left;
+    }
+  
+</style>

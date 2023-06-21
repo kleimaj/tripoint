@@ -1,0 +1,71 @@
+﻿<div class="header-parent">
+    <div class="header-parent-logo">
+        <div class="header-parent-logo-left"></div>
+        <div class="header-parent-logo-middle">
+            <picture>
+                <source type="image/webp" srcset="/images/logo.webp">
+                <img alt="New Haven Funding" src="~/images/logo.png">
+            </picture>
+            
+        </div>
+        <div class="header-parent-logo-right">
+            <p>For fastest processing,<br/>please <b>call</b> XXX-XXX-XXXX!
+            <p/>
+        </div>
+    </div>
+</div>
+
+<style asp-add-nonce="true">
+    .header-parent {
+   
+    }
+    .header-parent img {
+        height: 98px;
+        width:  246px;
+        margin: 0 auto;
+    }
+     .header-parent-logo {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+    .header-parent-logo p {
+        margin-left: auto;
+    }
+    .header-parent-logo-middle {
+    display: flex;
+        flex: 1 0 20%;
+        align-items: center;
+        flex-wrap: nowrap;
+        justify-content: center;
+        flex-direction: column;
+    }
+     .header-parent-logo-left {
+        display: flex;
+        flex: 1 0 35%;
+        margin-left: 0;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column-reverse;
+        flex-wrap: nowrap;
+    }
+    .header-parent-logo-right {
+        display: flex;
+        flex: 1 0 35%;
+        flex-wrap: wrap;
+   }
+   @@media only screen and (min-width:  855px) {
+     .header-parent-logo {
+       display: flex;
+           align-content: center;
+           justify-content: center;
+           align-items: center;
+           flex-wrap: wrap;
+           flex-direction: row;
+        }
+    
+    }
+</style>
