@@ -1,0 +1,370 @@
+.pg-banner {
+    &.about-us {
+        padding: 240px 0 0;
+        .page-img {
+            position: relative;
+            .about-tringle {
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translate(-50%,0);
+            }
+            &::after {
+            display: none;
+            }
+        } 
+    }
+}
+.about-us {
+    padding: 240px 0 0;
+    background-image: url(../images/triangle-bg.webp);
+    .inner-banner {
+        clip-path: polygon(16% 1%, 100% 8%, 100% 100%, 0% 100%);
+    }
+    .page-img {
+        .banner-img {
+            &::after {
+               top: 0;
+               transform: translate(-50%, 0);
+            }
+        } 
+    } 
+    .top-img {
+        .about-img {
+            top: -20px;
+        }
+    }
+}
+.pladge-block {
+    position: relative;
+    z-index: 1;
+    clip-path: polygon(0 0, 100% 0%, 100% 90%, 0% 100%);
+    padding: 0;
+    .people-details {
+        margin-left: 0;
+        padding: 100px 0;
+        p , .join-btn{
+            margin-left: 40px;
+        }
+    }
+    .join-people {
+        height: 100%;
+        clip-path: polygon(0 0, 80% 1%, 100% 100%, 0% 100%);
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+}
+.customber-block {
+    padding: 50px 0 113px;
+    
+    h3 {
+        font-size: 35px;
+        line-height: 40px;
+        color: $secondary-color;
+        font-weight: $bold;
+        margin: 0 0 20px;
+    }
+    p {
+        font-size: 25px;
+        line-height: 30px;
+    }
+}
+.about-goal
+{
+    background: none!important;
+    position: relative;
+    z-index: 2;
+    .tirngle-shape
+    {
+        width: 100%;
+        background: transparent linear-gradient(93deg, #5F2F90 0%, #301848 100%);
+        img 
+        {
+            position: relative;
+            left: calc((100% - 1425px)/2);
+            mix-blend-mode: multiply;
+        }
+    }
+}
+.possibilities-section {
+    &.our-goal {
+        overflow: visible;        
+    }
+    &.turn-tripoint {
+        padding: 78px 0 78px;
+        background: transparent linear-gradient(267deg, #5F2F90 0%, #301848 100%);
+        .possible-title {
+            h2 {
+                color: $light-color;
+                margin: 0;
+            }
+        }
+    }
+    .your-self {
+        ul {
+            padding: 20px 0 30px;
+            li {
+                color: $white-color;
+                &::before {
+                    content: '';
+                    top: 4px;
+                    width: 21px;
+                    height: 18px;
+                    background-image: url(../images/list-triangle.svg);
+                }
+            }
+        }
+    }
+}
+.unique {
+    position: relative;
+    .unique-people {
+        position: absolute;
+        z-index: 99;
+        top: -30px;
+        right: 270px;
+    }
+}
+.about-details {
+    margin: 0 58px 0 0;
+}
+@media (max-width:1799px) {
+    .unique .unique-people {
+        right: 100px;
+    }
+}
+@media (max-width:1599px) {
+    .about-details {
+        margin: 0 58px 90px 0;
+    }
+    .unique {
+        .unique-people {
+            top: -30px;
+            right: 40px;
+        }
+    } 
+    .about-us {
+        padding: 50px 0 0;
+    }
+    .about-goal .tirngle-shape img
+    {
+        left: calc((100% - 1320px) / 2);
+    }
+   
+}
+@media (max-width:1499px) {
+    .pg-banner.about-us {
+        padding: 50px 0 0;
+    }
+    .unique {
+        .unique-people {
+            top: 40px;
+        }
+    } 
+}
+@media (max-width:1399px) {
+    .about-us {
+        padding: 20px 0 0;
+    }
+    .unique {
+        .unique-people {
+            top: 156px;
+            img {
+                max-width: 500px;
+            }
+        }
+    } 
+    .about-goal .tirngle-shape img
+    {
+        left: calc((100% - 1180px) / 2);
+    }
+}
+@media (max-width:1199px) {
+    .possibilities-section {
+        &.about-goal {
+            .possible-title {
+                h1 {
+                    font-size: 35px;
+                    line-height: 35px;
+                }
+            }
+        }
+        &.our-goal {
+            .possible-title {
+                p {
+                    font-size: 19px;
+                    line-height: 25px;
+                }
+            } 
+        }
+    } 
+    .unique {
+        .unique-people {
+            top: 100px;
+            right: 50px;
+            img {
+                max-width: 450px;
+            }
+        }
+    }
+    .customber-block {
+        padding: 50px 0;
+        h3 {
+            font-size: 29px;
+            line-height: 30px;
+        }
+        p {
+            font-size: 21px;
+            line-height: 29px;
+        }
+    }  
+    .people-details p {
+        font-size: 20px;
+        line-height: 27px;
+        margin-left: 20px !important;
+    }
+    .about-goal .tirngle-shape img
+    {
+        left: calc((100% - 960px)/2);
+        width: 20%;
+    }
+    
+}
+@media (max-width:991px) {
+    .pladge-block {
+        .container-fluid {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+    }
+    .possibilities-section .your-self ul li {
+     display: block;
+     text-align: left;
+    }
+    .possibilities-section {
+        &.about-goal {
+            .possible-title {
+                h1 {
+                    font-size: 28px;
+                    line-height: 28px;
+                }
+            }
+        }
+        
+    } 
+   .about-bg-content {
+    padding: 0 0 30px !important;
+   }
+   .about-goal .tirngle-shape img
+    {
+        left: calc((100% - 630px) / 2);
+    }
+    .pladge-block {
+        .join-people {
+            display: none;
+        }
+        .people-details {
+            padding: 60px 0;
+        }
+    } 
+}
+@media (max-width:767px) {
+    .about-us {
+        .comman-block {
+            .details-content {
+                padding: 0;
+                p {
+                    text-align: center !important;
+                }
+            }
+        } 
+    }
+    .unique {
+        .customber-block {
+            padding: 21px 0 100px;
+            .possible-title {
+                margin-top: 0;
+            }
+        }
+        .unique-people {
+            top: unset;
+            bottom: -250px;
+            left: 0;
+            margin: 0 auto;
+            text-align: center;
+            img {
+                max-width: unset;
+                width: 100%;
+            }
+        }
+    }
+
+    .join-people {
+        display: none;
+    }
+    .pladge-block {
+        .people-details {
+            max-width: 340px;
+            padding: 40px 15px 100px;
+            margin: 0 auto;
+        }
+    } 
+    .customber-block {
+        padding: 21px 0;
+        text-align: center;
+        h3 {
+            font-size: 25px;
+            line-height: 30px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 22px;
+        }
+    }  
+    .pladge-block .people-details p, .pladge-block .people-details .join-btn {
+        margin-left: 0;
+        font-size: 20px !important;
+    }
+    .possibilities-section.turn-tripoint {
+        padding: 0px 0 0px;
+    }
+    .possibilities-section {
+        &.turn-tripoint {
+            overflow: visible;
+            .possible-title  {
+                text-align: left;
+                margin-top: 0;
+                top: -100px;
+                overflow: visible;
+                text-align: center;
+                img {
+                    margin: 0 auto 20px;
+                }
+                ul {
+                    padding: 0;
+                    margin: 0;
+                   
+                }
+            }
+        }
+    } 
+    .join-btn {
+        margin: 20px 0 0;
+    }
+  
+    .about-goal .tirngle-shape img
+    {
+        display: none;
+    }
+    .pladge-block {
+        -webkit-clip-path: polygon(0 0, 100% 0%, 100% 95%, 0% 100%);
+        clip-path: polygon(0 0, 100% 0%, 100% 95%, 0% 100%);
+       
+    }
+}
+@media (max-width:567px) {
+  
+}

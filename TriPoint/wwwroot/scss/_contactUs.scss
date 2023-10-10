@@ -1,0 +1,230 @@
+.pg-banner {
+    position: relative;
+    background: transparent linear-gradient(358deg, #E7F3FC 0%, #FFFFFF0D 100%) 0% 0%;
+
+    &::after {
+        position: absolute;
+        content: '';
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url(../images/Triangle-Pattern_TPL.webp);
+        width: 100%;
+        z-index: -1;
+
+    }
+
+    .page-img {
+        clip-path: polygon(14% 0, 100% 0%, 100% 100%, 0% 100%);
+        ;
+        -webkit-clip-path: polygon(14% 0, 100% 0%, 100% 100%, 0% 100%);
+        ;
+        -o-clip-path: polygon(14% 0, 100% 0%, 100% 100%, 0% 100%);
+        ;
+        -ms-clip-path: polygon(14% 0, 100% 0%, 100% 100%, 0% 100%);
+        ;
+
+        &.banner-img {
+            &::after {
+                background-image: url(../images/grediant-shape.webp);
+                width: 500px;
+                margin-top: -40px;
+            }
+        }
+
+        img {
+            width: 100%;
+        }
+    }
+
+    .contact-detail {
+
+        // padding: 75px 0 0 170px;
+        h1 {
+            font-size: 75px;
+            line-height: 85px;
+            font-weight: $bold;
+            color: $primary-color;
+            margin: 0 0 16px;
+            display: inline-block;
+        }
+
+        p {
+            font-size: 30px;
+            line-height: 35px;
+            margin: 0;
+        }
+    }
+}
+
+.form-section {
+    padding: 78px 0;
+    background: transparent linear-gradient(96deg, rgba(95, 47, 144, 1) 0%, rgba(48, 24, 72, 1) 100%);
+}
+
+.contact-form {
+    .custom-row {
+        .form-control {
+            height: 70px;
+            padding: 19px 33px;
+        }
+
+        textarea {
+            padding: 19px 33px !important;
+        }
+    }
+}
+
+.contact-main {
+    .top-img {
+        .about-tringle {
+            left: 50%;
+            transform: translate(-50%, 0);
+        }
+    }
+
+    &.pg-banner {
+        .page-img {
+            &.banner-img {
+                &::after {
+                    top: 0;
+                    margin: 0;
+                    transform: translate(-50%, 0);
+                }
+            }
+        }
+    }
+}
+
+@media (max-width:1499px) {
+    .form-section {
+        padding: 38px 0;
+    }
+
+    .pg-banner {
+        .contact-detail {
+            h1 {
+                font-size: 50px;
+                line-height: 50px;
+            }
+
+            p {
+                font-size: 20px;
+                line-height: 25px;
+                text-align: left !important;
+            }
+        }
+    }
+
+    .contact-form {
+        .custom-row {
+            .form-control {
+                height: 50px;
+                padding: 15px 18px;
+            }
+
+            textarea {
+                padding: 19px 18px !important;
+            }
+        }
+    }
+
+}
+
+@media (max-width:1199px) {
+    .pg-banner {
+        .page-img {
+            &.banner-img {
+                &::after {
+                    width: 200px;
+                    height: 205px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 991px) {
+    .pg-banner {
+        .contact-detail {
+            padding: 0px 0px 0px 0px;
+            display: inline-block;
+            text-align: left;
+        }
+    }
+
+    .about-tringle {
+        .page-img {
+            display: none;
+        }
+    }
+
+    .contact-detail.about-details {
+        margin: 0 0 50px;
+    }
+
+}
+
+@media (max-width:767px) {
+
+
+    .pg-banner {
+        &.contact-main {
+            background: rgba(0, 0, 0, 0) linear-gradient(358deg, #a1d7ff 0%, rgba(255, 255, 255, 0.0509803922) 100%) 0% 0% !important;
+
+            .page-img {
+                height: 300px;
+                clip-path: polygon(0 0, 100% 9%, 100% 100%, 0% 100%);
+                -webkit-clip-path: polygon(0 0, 100% 9%, 100% 100%, 0% 100%);
+                -o-clip-path: polygon(0 0, 100% 9%, 100% 100%, 0% 100%);
+                -ms-clip-path: polygon(0 0, 100% 9%, 100% 100%, 0% 100%);
+
+                img {
+                    height: 100%;
+                    object-fit: cover;
+                }
+
+                &.banner-img {
+                    &::after {
+                        top: -60px;
+                        width: 260px;
+                        height: 265px;
+                    }
+                }
+            }
+        }
+
+    }
+
+    .contact-form {
+        .custom-row {
+            .form-control {
+                font-size: 16px;
+                line-height: 16px;
+            }
+        }
+    }
+
+    .form-section {
+        padding: 23px 0 55px;
+    }
+
+    .submit-btn {
+        margin-top: 40px;
+    }
+
+    .contact-main {
+        .comman-block {
+            .details-content {
+                padding: 45px 0 45px;
+            }
+        }
+    }
+
+    .top-img {
+        .about-tringle {
+            top: 0;
+        }
+    }
+}

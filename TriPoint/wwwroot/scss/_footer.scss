@@ -1,0 +1,227 @@
+footer {
+    background-color: #F2F4F5;
+    padding: 60px 0;
+    position: relative;
+    &::before {
+        position: absolute;
+        content: '';
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 29px;
+        width: 100%;
+        background: transparent linear-gradient(91deg, #A3CD39 0%, #ACD2ED 34%, #5F2F90 100%);
+        box-shadow: 0px 3px 6px #1945461A;
+    }
+    .f-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        li {
+            a {
+                font-size: 16px;
+                line-height: 20px;
+                color: $grey-color;
+                font-family: $open-sans;
+                transition: all 0.3s ease-in-out;
+                text-wrap: none;
+               
+            }
+        }
+    }
+
+    .f-block {
+        padding: 18px 0 15px 30px;
+
+        h2 {
+            font-size: 24px;
+            color: $primary-color;
+            font-weight: 700;
+            font-family: $open-sans;
+        }
+
+        p {
+            font-size: 18px;
+        }
+    }
+
+    .acc-img {
+        margin-top: 24px;
+    }
+
+    .icon {
+        margin-right: 9px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    .f-bottom {
+        border-top: 1px solid $light-color;
+        border-bottom: 1px solid $light-color;
+        margin-top: 35px;
+        padding: 20px 0;
+
+        p {
+            font-size: 14px;
+            line-height: 19px;
+            
+            a {
+                color: $black-text;
+                transition: all 0.5s ease-in-out;
+
+                &:hover {
+                    color: $primary-color;
+                }
+            }
+
+            &:last-child {
+                margin: 0;
+            }
+        }
+    }
+    .f-top {
+        .row {
+            [class*=col-] {
+                position: relative;
+                &::after {
+                    position: absolute;
+                    content: '';
+                    left: 0;
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                    background-color: $light-color;
+                    width: 1px;
+                    height: 100%;
+                    overflow: hidden;
+                }
+                &:first-child {
+                    &::after {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width:1499px) {
+    footer {
+        .f-block {
+            padding: 18px 0 15px 20px;
+        }
+    }
+}
+
+@media (max-width:1199px) {
+    footer {
+        padding: 95px 0 55px;
+
+        .f-block {
+            padding: 18px 0 15px 10px;
+        }
+    }
+}
+
+@media (max-width:991px) {
+
+    footer {
+        padding: 50px 0 55px;
+
+        .f-top {
+            .row {
+                [class*=col-] {
+                    margin-bottom: 20px;
+                   &:nth-child(3) {
+                    &::after {
+                        display: none;
+                    }
+                   }
+                }
+            }
+        }
+        .f-bottom {
+            margin-top: 15px;
+            padding: 10px 0 0;
+        }
+        .f-block {
+            padding: 18px 0 15px 0px;
+        }
+    }
+
+    
+
+}
+
+@media (max-width:767px) {
+    footer {
+        padding: 32px 20px 30px;
+        p {
+            font-size: 12px;
+            line-height: 17px;
+        }
+        .f-top {
+            padding: 40px 0px 10px;
+            .f-logo {
+                img {
+                    width: 166px;
+                }
+            }
+            .logo {
+                text-align: center;
+                display: flex;
+                justify-content: center;
+            }
+        }
+
+        .f-list {
+            margin-right: 23px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+
+        .f-bottom {
+            margin-top: 0;
+            padding: 21px 0px 21px;
+            border-bottom: 1px solid #acd2ed;
+        }
+       
+        .f-block {
+            margin-left: 0;
+            padding: 21px 0 18px 10px;
+            p {
+                padding: 9px 0 0;
+            }
+            h2 {
+                margin: 0;
+            }
+        }
+
+       
+
+        .f-logo {
+            margin-bottom: 18px;
+        }
+        .f-top {
+            .row {
+                [class*=col-] {
+                    margin-bottom: 0;
+                    &::after {
+                        width: 100%;
+                        height: 1px;
+                    }
+                   &:nth-child(3) {
+                    &::after {
+                        display: block;
+                    }
+                   }
+                }
+            }
+        }
+    }
+}

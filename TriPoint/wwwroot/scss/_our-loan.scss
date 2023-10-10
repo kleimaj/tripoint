@@ -1,0 +1,392 @@
+.our-loan-page {
+    margin-top: 178px;
+    background-image: url(../images/triangle-bg.webp );
+    .banner-content {
+        margin-left: 140px;
+    }
+    .loan-details {
+        h1 {
+            font-size: 90px;
+            line-height: 90px;
+            color: $primary-color;
+            font-weight: $bold;
+        }
+    }
+}
+.our-loan-mobile {
+    display: none;
+}
+.possibilities-section {
+    background: transparent linear-gradient(93deg, #5F2F90 0%, #301848 100%);
+    padding: 40px 0 43px;
+    position: relative;
+    overflow: hidden;
+    .tirngle-shape {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 0;
+        display: flex;
+        align-items: center;
+    }
+    .possible-title {
+        position: relative;
+        z-index: 1;
+        h1 {
+            font-size: 45px;
+            line-height: 45px;
+            font-weight: $bold;
+            color: $secondary-color;
+            margin: 0;
+            text-align: center;
+        }
+        h2 {
+            font-size: 35px;
+            line-height: 45px;
+            color: $secondary-color;
+            margin: 0 0 0 40px;
+            font-weight: $bold;
+        }
+        p {
+            font-size: 25px;
+            line-height: 30px;
+            color: $white-color;
+            margin: 0;
+        }
+    }
+}
+.loan-easy {
+    padding: 60px 0 100px;
+    clip-path: polygon(0 0, 100% 0%, 100% 91%, 0% 100%);
+    h2 {
+        font-weight: $bold;
+    }
+    p {
+        font-size: 30px;
+        line-height: 35px;
+        margin: 0 0 48px;
+    }
+    .easy-block {
+        ul {
+            li {
+                display: inline-block;
+            }
+        }
+        img {
+            height: 86px;
+        }
+        h3 {
+            font-size: 35px;
+            line-height: 47px;
+            font-weight: $bold;
+            color: $primary-color;
+            text-transform: uppercase;
+            margin: 21px 0 12px;
+        }
+       
+    }
+}
+
+.life-block {
+    padding: 100px 80px 250px;
+    p {
+        font-size: 25px;
+        line-height: 30px;
+    }
+}
+
+.slider-possible {
+    .slick-dots {
+       button {
+            background-color: $light-color;
+        }
+    
+        li.slick-active button {
+            background-color: $primary-color;
+        }
+    
+    }
+    .slick-track {
+        display: flex;
+        .slider-item {
+            height: auto;
+        }
+    }
+    .cost-content {
+        background-color: $primary-color;
+        display: inline-block;
+        border-radius: 2px;
+        margin: 0 8px;
+        height: 100%;
+        .item-content {
+            padding: 20px 10px 25px;
+            h2 {
+                font-size: 30px;
+                line-height: 40px;
+                color: $light-color;
+                margin: 0 0 5px;
+            }
+            p {
+                color: $white-color;
+                font-size: 22px;
+                line-height: 30px;
+            }
+        }
+    } 
+}
+
+.find-loan {
+    padding: 80px 0;
+}
+.loan-section {
+    background: transparent linear-gradient(266deg, #5F2F90 0%, #301848 100%) 0% 0% no-repeat padding-box;
+    .trust-img {
+        margin-left: 300px;
+        padding: 80px 0;
+    }
+    .shape-img{
+        &::before {
+            background-image: url(../images/loan-people.webp);
+            background-size: cover;
+        }
+    } 
+}
+.shape-img {
+    position: relative;
+    .loan-img {
+        position: absolute;
+        z-index: 999;
+        top: -100px;
+    }
+}
+@media (max-width: 1799px) {
+    .loan-section .trust-img {
+        margin-left: 240px;
+    }
+    .possibilities-section .possible-title h2 {
+         margin: 0 0 0 0px; 
+    }
+}
+@media (max-width:1499px) {
+    .pg-banner .page-img.banner-img::after {
+        width: 280px;
+        height: 280px;
+    }
+    .shape-img .loan-img {
+        top: -160px;
+        width: 340px;
+        left: 130px;
+    }
+    .our-loan-page {
+        margin-top: 0;
+        .banner-content {
+            margin-left: 90px;
+        } 
+    }
+    .possibilities-section {
+        .possible-title {
+            h2 {
+                margin: 0 0 0 0px;
+            }
+        } 
+    } 
+    .loan-section {
+        .trust-img {
+            margin-left: 160px;
+        }
+    } 
+}
+@media (max-width:1199px) {
+    .loan-section {
+        .trust-img {
+            margin-left: 60px;
+        }
+    } 
+    .life-block {
+        padding: 50px 80px 250px;
+        p {
+            br {
+                display: none;
+            }
+        }
+    }
+    .loan-img {
+        top: -130px;
+        img {
+            width: 60%;
+        }
+    }
+}
+@media (max-width:991px)  {
+    .loan-section .shape-img::before {
+        display: none;
+    }
+    .our-loan-mobile img {
+        width: 100%;
+    }
+    .our-loan-page {
+        .banner-content {
+            margin-left: 0px;
+        } 
+    }
+    .loan-easy {
+        .easy-block {
+            h3 {
+                font-size: 25px;
+                line-height: 30px;
+                margin: 21px 0 12px;
+            }
+        }
+    }  
+    .loan-section {
+        .shape-img {
+            &::before {
+                height: 450px;
+                width: 110%;
+                -webkit-clip-path: polygon(20% 0%, 100% 8%, 100% 100%, 0% 100%);
+                clip-path: polygon(20% 0%, 100% 8%, 100% 100%, 0% 100%);
+            }
+        } 
+    }
+    .life-block {
+        padding: 50px 80px 110px;
+    }
+    .shape-img {
+        .loan-img {
+           display: none;
+        }
+        .loan-section .shape-img {
+            display: none;
+        }
+        
+    } 
+    .our-loan-mobile {
+        display: block;
+    }
+  
+}
+@media (max-width:767px)  {
+    
+    .our-loan-page {
+        .banner-content {
+            padding: 30px 0 30px !important;
+            margin-left: 0px;
+            text-align: center;
+        } 
+        .page-img {
+            clip-path: polygon(0 0, 100% 22%, 100% 100%, 0 100%);
+        }
+    }
+    .possibilities-section {
+        padding: 28px 0px 41px;
+        text-align: center;
+        .possible-title {
+            h1 {
+                font-size: 25px;
+                line-height: 30px;
+                margin: 0 0 13px;
+                br {
+                    display: none;
+                }
+            }
+            h2 {
+                font-size: 25px;
+                line-height: 30px;
+                margin: 0 0 10px 0;
+                padding: 0 0 18px;
+            }
+            p {
+                font-size: 16px;
+                line-height: 21px;
+            }
+        } 
+        .tirngle-shape {
+            align-items: start;
+        }
+    } 
+    .loan-easy {
+        padding: 28px 0 30px;
+        clip-path: polygon(0 0, 100% 0%, 100% 95%, 0% 100%);
+        .easy-block {
+            margin: 0 0 45px;
+            img {
+                height: auto;
+            }
+        } 
+        p {
+            font-size: 18px;
+            line-height: 22px;
+            margin: 0 0 30px;
+        }
+        .slide-arrow {
+            top: -30px;
+            margin: 0 10px;
+            &.next-arrow {
+                right: 20%;
+            }
+            &.prev-arrow {
+                left: 20%;
+            }
+        }
+    }
+   
+    .slider-possible {
+        .cost-content {
+            margin: 20px 0 0;
+            img {
+                height: 430px;
+                object-fit: cover;
+            }
+            .item-content {
+                h2 {
+                    font-size: 25px;
+                    line-height: 30px;
+                    margin: 0 0 5px;
+                }
+            } 
+        }
+    } 
+    .loan-section {
+        .shape-img {
+            &::before {
+                height: 275px;
+                bottom: 300px;
+            }
+        } 
+        .trust-img {
+            margin-left: 0px;
+        }
+    } 
+    .easy-apply {
+        .section-title {
+            font-size: 20px;
+            line-height: 25px;
+        }
+    } 
+    .easy-details {
+        p {
+            margin: 0 0 70px;
+        }
+    }
+    .loan-easy {
+        &.life-block {
+            padding: 28px 0 100px;
+            .live-content {
+                max-width: 340px;
+                padding: 0 15px;
+                margin: 0 auto;
+            }
+        }
+    } 
+    .loan-section {
+        clip-path: none !important;
+        margin-top: 0;
+        .easy-apply {
+            padding: 0 15px;
+            max-width: 340px;
+            margin: 0 auto;
+            background: unset;
+        }
+    }
+}
