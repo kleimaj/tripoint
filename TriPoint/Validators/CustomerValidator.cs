@@ -26,6 +26,6 @@ public class CustomerValidator : AbstractValidator<Customer> {
         RuleFor(x => x.Offer);
         RuleFor(x => x.Address2);
         RuleFor(x => x.LoanAmount)
-            .NotEqual("Loan Amount").WithMessage("Please select a loan amount.");
+            .NotEmpty().WithMessage("Please enter a loan amount.");
     }
 }

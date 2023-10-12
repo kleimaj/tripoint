@@ -87,8 +87,9 @@
                                     <span asp-validation-for="Phone" class="text-danger"></span>
                                 </div>
                                 <div class="custom-row form-group">
-                                    <!--<label asp-for="LoanAmount"></label>-->
-                                    <select asp-for="LoanAmount" asp-items="loanAmtList" type="text" class="form-select form-control loanAmt" placeholder=" "></select>
+                                    <label asp-for="LoanAmount">Loan Amount</label>
+                                    <!--<select asp-for="LoanAmount" asp-items="loanAmtList" type="text" class="form-select form-control loanAmt" placeholder=" "></select>-->
+                                      <input asp-for="LoanAmount" type="text" class="form-control" placeholder=" ">
                                     <span asp-validation-for="LoanAmount" class="text-danger"></span>
                                 </div>
                              
