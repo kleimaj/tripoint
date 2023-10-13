@@ -1,0 +1,6 @@
+
+Mcsharpsquid:S1125•"*Remove the unnecessary Boolean literal(s).(¾ğ“¨ûÿÿÿÿ
+ocsharpsquid:S3776*"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(Ë¯ˆ×
+mcsharpsquid:S3241¼"JChange return type to 'void'; not a single caller uses the returned value.(şÌÓÖùÿÿÿÿ
+acsharpsquid:S10759"?Refactor your code not to use hardcoded absolute paths or URIs.(’ãÈúÿÿÿÿ
+@csharpsquid:S1254"Remove this commented out code.(ü‹—ïıÿÿÿÿ

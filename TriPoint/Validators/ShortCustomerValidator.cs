@@ -14,6 +14,6 @@ public class ShortCustomerValidator : AbstractValidator<ShortCustomer> {
         RuleFor(x => x.Phone)
             .NotEmpty().Length(13, 18).WithMessage("Phone number is not a valid number.");
         RuleFor(x => x.Offer);
-        RuleFor(x => x.LoanAmount).NotEmpty().WithMessage("Please select a loan amount.");
+        RuleFor(x => x.LoanAmount).NotEmpty().WithMessage("Please enter a loan amount.");
     }
 }

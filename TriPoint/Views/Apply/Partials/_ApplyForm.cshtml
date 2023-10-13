@@ -5,7 +5,6 @@
         BeforeSubmit = "CustomerFormBeforeSubmit",
         Callback = "CustomerFormCallback"
     };
-    var loanAmtList = LoanAmountList.loanAmtList;
     var stateList = new List<SelectListItem> {
         new() { Text = "State", Value = "State" },
         new() { Text = "Alabama", Value = "AL" },
@@ -164,11 +163,9 @@
                                        <div class="col-md-6">
                                            <div class="custom-row">
                                                  <div class="custom-row form-group">
-                                                  
+                                                    <input asp-for="LoanAmount" type="text" class="form-control" placeholder=" ">
                                                     <label class="form-label" asp-for="LoanAmount">Loan Amount</label>
-                                                  <input asp-for="LoanAmount" type="text" class="form-control" placeholder=" ">
-                                                      <!--<select asp-for="LoanAmount" asp-items="loanAmtList" type="text" class="form-select form-control loanAmt" placeholder=" "></select>-->
-                                                      <span asp-validation-for="LoanAmount" class="text-danger"></span>
+                                                    <span asp-validation-for="LoanAmount" class="text-danger"></span>
                                                   </div>
                                            </div>
                                        </div>
@@ -217,9 +214,7 @@ window.addEventListener("load", function () {
        $form.attr('resetFormAfterSuccess', 'True');
        $form.attr('toastrPositionClass', 'formhelper-toast-top-right');
 
-        $(".loanAmt").change(function(){ 
-            $(".loanAmt option[value='Loan Amount']").remove();           
-        });    
+     
       // $(".stateList").change(function(){ 
       //          $(".stateList option[value='State']").remove();           
                
