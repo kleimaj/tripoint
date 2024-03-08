@@ -12,9 +12,9 @@ public class CustomerValidator : AbstractValidator<Customer> {
         RuleFor(x => x.Email)
             .NotEmpty().WithMessage("Email address is required.").EmailAddress().WithMessage("Enter a valid email address.");
         RuleFor(x => x.Phone)
-            .Length(13, 18).WithMessage("Phone number is not a valid number.");
+            .Length(12, 15).WithMessage("Phone number is not a valid number.");
         RuleFor(x => x.Cell)
-            .NotEmpty().WithMessage("Cell phone number is required").Length(13, 18).WithMessage("Cell phone number is not a valid number.");
+            .NotEmpty().WithMessage("Cell phone number is required").Length(10, 15).WithMessage("Cell phone number is not a valid number.").Matches(@"^[0-9*)(#+-/\s]+$").WithMessage("Cell phone number is not a valid number.");
         RuleFor(x => x.Address);
           //  .NotEmpty().WithMessage("Address is required.");
         RuleFor(x => x.City);

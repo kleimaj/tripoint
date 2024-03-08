@@ -138,12 +138,27 @@ public class HomeController : Controller {
             Method = Method.Post
         };
       
-        request.AddParameter("first_name",customer.FirstName );
-        request.AddParameter("last_name", customer.LastName);
-        request.AddParameter("email", customer.Email);
-        request.AddParameter("offer_code", string.IsNullOrEmpty(customer.Offer)?"None":customer.Offer);
-        request.AddParameter("cell_phone", customer.Phone);
-        request.AddParameter("loan_amount", customer.LoanAmount);
+        request.AddQueryParameter("first_name",customer.FirstName );
+        request.AddQueryParameter("last_name", customer.LastName);
+        request.AddQueryParameter("email", customer.Email);
+        request.AddQueryParameter("offer_code", string.IsNullOrEmpty(customer.Offer)?"None":customer.Offer);
+        request.AddQueryParameter("cell_phone", customer.Phone);
+        request.AddQueryParameter("loan_amount", customer.LoanAmount);
+
+        if (!String.IsNullOrEmpty(customer.Offer)) {
+            var directMail =  _martenService.GetDirectMail(customer.Offer).Result;
+            if (directMail != null) {
+                 request.AddQueryParameter("address", directMail.Address);
+                 request.AddQueryParameter("state", directMail.StateCode);
+                 request.AddQueryParameter("city", directMail.City);
+                 request.AddQueryParameter("zip_code", directMail.Zip);
+            }
+        }
+        
+        var posturl = client.BuildUri(request);
+        _logger?.LogInformation(posturl.ToString());
+        
+        
         
         var response = client.Execute(request);
         if (response.IsSuccessful == false) throw new InvalidOperationException(response.ErrorMessage);

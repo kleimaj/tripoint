@@ -12,7 +12,7 @@ public class ShortCustomerValidator : AbstractValidator<ShortCustomer> {
         RuleFor(x => x.Email)
             .NotEmpty().WithMessage("Email is required.").EmailAddress().WithMessage("Enter a valid email address.");
         RuleFor(x => x.Phone)
-            .NotEmpty().Length(13, 18).WithMessage("Phone number is not a valid number.");
+            .NotEmpty().WithMessage("Cell phone number is required").Length(10, 15).WithMessage("Cell phone number is not a valid number.").Matches(@"^[0-9*)(#+-/\s]+$").WithMessage("Cell phone number is not a valid number.");
         RuleFor(x => x.Offer);
         RuleFor(x => x.LoanAmount).NotEmpty().WithMessage("Please enter a loan amount.");
     }
