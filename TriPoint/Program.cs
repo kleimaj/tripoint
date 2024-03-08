@@ -138,30 +138,36 @@ app.UseCsp(csp => {
     csp.AllowBaseUri
         .FromSelf();
     csp.AllowScripts
-
-        .FromSelf()
-        .AddNonce()
+        .FromAnywhere()
+        //.FromSelf()
+        //.AddNonce()
         .From("https://challenges.cloudflare.com")
         .From("https://app.jazz.co")
         .From("https://ajax.googleapis.com/")
         .From("https://cdnjs.cloudflare.com")
+        .From("https://www.googletagmanager.com")
+        .From("https://matomo.landers.teamdms.dev")
+        .From("https://uxwizz.landers.teamdms.dev")
         .AllowUnsafeInline();//Fallback for browsers that don't support nonce
         
     csp.AllowImages
-        .FromSelf()
+        .FromAnywhere()
+        //.FromSelf()
         .From("https://app.jazz.co/")
         .From("data:");
     csp.AllowStyles
-
-        .FromSelf()
+        .FromAnywhere()
+        //.FromSelf()
         .From("data:")
         .From("https://app.jazz.co")
         .From("https://ajax.googleapis.com/")
         .AddNonce()
         .AllowUnsafeInline(); //Fallback for browsers that don't support nonce*/
     csp.AllowFrames
+        .From("https://www.googletagmanager.com")
         .From("https://challenges.cloudflare.com")
-        .From("https://app.jazz.co");
+        .From("https://app.jazz.co")
+        .From("https://www.googletagmanager.com");
     csp.AllowPlugins
         .FromNowhere();
     csp.AllowFraming
