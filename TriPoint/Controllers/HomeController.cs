@@ -202,35 +202,43 @@ public class HomeController : Controller {
             Team = GetShortTeam(customer),
             OfferCode = string.IsNullOrEmpty(customer.Offer)?"None":customer.Offer
         };
-        if (!String.IsNullOrEmpty(customer.Offer)) {
-            var directMail =  _martenService.GetDirectMail(customer.Offer).Result;
-            if (directMail != null) {
-                //add directmail information to lead
-                lead.Address = directMail.Address;
-                lead.State = directMail.StateCode;
-                lead.City = directMail.City;
-                lead.ZipCode = directMail.Zip;
-            }
-        }
-        var prospects = new Tpl2Salesforce.TripointProspects { Prospects = new[] { lead } };
-        
-        request.AddJsonBody(JsonConvert.SerializeObject(prospects));
-        _logger.LogInformation("Posting short lead to salesforce CRM: {@lead}", JsonConvert.SerializeObject(prospects));
-        var leadResponse = client.Execute(request);
-        _logger.LogInformation("Sending Lead: {leadResponse}", JsonConvert.SerializeObject(prospects));
-        if (leadResponse.IsSuccessful == false) {
-            _logger.LogCritical("ERROR with Content: {leadResponse}", leadResponse.Content);
-            _logger.LogCritical("ERROR with ErrorMessage: {leadResponse}", leadResponse.ErrorMessage);
-            _logger.LogCritical("ERROR with ResponseStatus: {leadResponse}", leadResponse.ResponseStatus);
-            throw new InvalidOperationException(leadResponse.ErrorMessage);
+        if(lead.Team.Contains("TPL")) {
+            _logger.LogInformation("Lead is going to TPL Team, skipping post to salesforce CRM {@lead}",
+                JsonConvert.SerializeObject(lead));
+            return;
         }
         else {
-            _logger.LogInformation("LeadResponse Content: {leadResponseId}", leadResponse.Content);
-            _logger.LogInformation("LeadResponse ResponseStatus: {leadResponseId}", leadResponse.ResponseStatus);
-            _logger.LogInformation("LeadResponse StatusCode: {leadResponseId}", leadResponse.StatusCode);
-            _logger.LogInformation("LeadResponse ErrorMessage: {leadResponseId}", leadResponse.ErrorMessage);
-        }
+            if (!String.IsNullOrEmpty(customer.Offer)) {
+                var directMail = _martenService.GetDirectMail(customer.Offer).Result;
+                if (directMail != null) {
+                    //add directmail information to lead
+                    lead.Address = directMail.Address;
+                    lead.State = directMail.StateCode;
+                    lead.City = directMail.City;
+                    lead.ZipCode = directMail.Zip;
+                }
+            }
 
+            var prospects = new Tpl2Salesforce.TripointProspects { Prospects = new[] { lead } };
+
+            request.AddJsonBody(JsonConvert.SerializeObject(prospects));
+            _logger.LogInformation("Posting short lead to salesforce CRM: {@lead}",
+                JsonConvert.SerializeObject(prospects));
+            var leadResponse = client.Execute(request);
+            _logger.LogInformation("Sending Lead: {leadResponse}", JsonConvert.SerializeObject(prospects));
+            if (leadResponse.IsSuccessful == false) {
+                _logger.LogCritical("ERROR with Content: {leadResponse}", leadResponse.Content);
+                _logger.LogCritical("ERROR with ErrorMessage: {leadResponse}", leadResponse.ErrorMessage);
+                _logger.LogCritical("ERROR with ResponseStatus: {leadResponse}", leadResponse.ResponseStatus);
+                throw new InvalidOperationException(leadResponse.ErrorMessage);
+            }
+            else {
+                _logger.LogInformation("LeadResponse Content: {leadResponseId}", leadResponse.Content);
+                _logger.LogInformation("LeadResponse ResponseStatus: {leadResponseId}", leadResponse.ResponseStatus);
+                _logger.LogInformation("LeadResponse StatusCode: {leadResponseId}", leadResponse.StatusCode);
+                _logger.LogInformation("LeadResponse ErrorMessage: {leadResponseId}", leadResponse.ErrorMessage);
+            }
+        }
     }
     private string GetShortTeam(ShortCustomer customer) {
         var team = "TPL - Website";
