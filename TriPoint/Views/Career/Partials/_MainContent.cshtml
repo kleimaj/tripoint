@@ -78,8 +78,17 @@
     <!-- join section end -->
 
 <style asp-add-nonce="true">
+.banner-sec.career-banner .banner-content {
+    padding: 0px 0 0;
+}
+.banner-content h1 {
+    font-size: 90px;
+    line-height: 100px;
+    font-weight: 700;
+    color: #5f2f90;
+}
 .banner-sec.career-banner .goal-content {
-    top: 180px !important;
+    top: 180px;
 }
 .sub-title {
     font-size: 50px;
@@ -88,6 +97,19 @@
 }
 .blue-text {
     color: #5f2f90!important;
+}
+.banner-sec::after {
+    content: '';
+    position: absolute;
+    width: 65vw;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: #fff;
+    background-image: url(../images/triangle-bg.webp);
+    z-index: -1;
+    clip-path: polygon(0 0,100% 0,40% 90%,0 70%);
+    z-index: 1;
 }
 
 #resumator-wrapper {
@@ -177,6 +199,13 @@ div#resumator-jobs {
 	}
 }
  @@media (max-width: 1199px) {
+ .banner-content h1 {
+     font-size: 70px;
+     line-height: 70px;
+     font-weight: 700;
+     color: #5f2f90;
+ }
+ 
 	 .people-details {
 		 margin-left: 20px;
 		 width: 90%;
@@ -185,7 +214,7 @@ div#resumator-jobs {
 	 .banner-sec.career-banner .banner-content {
 		 padding: 20px 0 0px;
 		 position: relative;
-		 top: 70px;
+		
 	}
 	 .banner-sec.career-banner::before {
 		 height: calc(100% - 280px);
@@ -207,17 +236,33 @@ div#resumator-jobs {
 		 width: 217px;
 		 height: 231px;
 	}
+	.banner-sec .container {
+        position: relative;
+        z-index: 2;
+        margin-top: 55px;
+    }
 }
  @@media (max-width: 991px) {
+ .banner-sec .container {
+     position: relative;
+     z-index: 2;
+     margin-top: 102px;
+ }
+ .banner-content h1 {
+     font-size: 70px;
+     line-height: 70px;
+     font-weight: 700;
+     color: #5f2f90;
+ }
 	 .people-details .tringle-shape {
 		 display: none;
 	}
 	 .banner-sec.career-banner::before {
 		 height: calc(100% - 325px);
 	}
-	 .banner-sec.career-banner::after {
-		 height: 64%;
-	}
+	.banner-sec.career-banner::after {
+        height: 85%;
+    }
 	 .banner-sec.career-banner .goal-content {
 		 padding: 20px 10px;
 	}
@@ -243,8 +288,18 @@ div#resumator-jobs {
 		 left: 71%;
 		 width: 210px;
 	}
+	.banner-sec .container {
+        position: relative;
+        z-index: 2;
+        margin-top: 102px;
+    }
 }
  @@media (max-width: 767px) {
+ .banner-sec .container {
+     position: relative;
+     z-index: 2;
+     margin-top: 10px;
+ }
 	 .banner-sec.career-banner .banner-section-tringle .tringle-banner {
 		 top: 120px;
 		 left: 61%;
@@ -259,10 +314,23 @@ div#resumator-jobs {
 		 max-width: 340px;
 		 margin: 0 auto;
 	}
-	 .banner-sec.career-banner::after {
-		 height: 32%;
-		 clip-path: polygon(0 0, 100% 0, 100% 89%, 10% 100%, 0 83%);
-	}
+	.banner-sec.career-banner::after {
+        height: 40%;
+        clip-path: polygon(0 0,100% 0,100% 89%,10% 100%,0 83%);
+    }
+    .banner-sec::after {
+        content: '';
+        position: absolute;
+        width: 102vw;
+        height: 100%;
+        left: 0;
+        top: 0;
+        background-color: #fff;
+        background-image: url(../images/triangle-bg.webp);
+        z-index: -1;
+        clip-path: polygon(0 0,100% 0,40% 90%,0 70%);
+        z-index: 1;
+    }
 	 .banner-sec.career-banner .banner-content {
 		 text-align: center;
 		 top: 10px;

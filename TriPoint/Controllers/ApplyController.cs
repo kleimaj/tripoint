@@ -115,18 +115,31 @@ public class ApplyController : Controller {
             Method = Method.Post
         };
       
-        request.AddParameter("first_name",customer.FirstName );
-        request.AddParameter("last_name", customer.LastName);
-        request.AddParameter("email", customer.Email);
+        request.AddQueryParameter("first_name",customer.FirstName );
+        request.AddQueryParameter("last_name", customer.LastName);
+        request.AddQueryParameter("email", customer.Email);
       //  request.AddParameter("address", customer.Address);
-        request.AddParameter("cell_phone", customer.Cell);
+        request.AddQueryParameter("cell_phone", customer.Cell);
       //  request.AddParameter("state", customer.State);
        // request.AddParameter("city", customer.City);
       //  request.AddParameter("zip_code", customer.Zip);
-        request.AddParameter("home_phone", customer.Phone);
-        request.AddParameter("loan_amount", customer.LoanAmount);
-        request.AddParameter("offer_code", string.IsNullOrEmpty(customer.Offer)?"None":customer.Offer);
+        request.AddQueryParameter("home_phone", customer.Phone);
+        request.AddQueryParameter("loan_amount", customer.LoanAmount);
+        request.AddQueryParameter("offer_code", string.IsNullOrEmpty(customer.Offer)?"None":customer.Offer);
+       
+        if (!String.IsNullOrEmpty(customer.Offer)) {
+            var directMail =  _martenService.GetDirectMail(customer.Offer).Result;
+            if (directMail != null) {
+                request.AddQueryParameter("address", directMail.Address);
+                request.AddQueryParameter("state", directMail.StateCode);
+                request.AddQueryParameter("city", directMail.City);
+                request.AddQueryParameter("zip_code", directMail.Zip);
+            }
+        }
         
+        var posturl = client.BuildUri(request);
+        _logger?.LogInformation(posturl.ToString());
+
         var response = client.Execute(request);
         if (response.IsSuccessful == false) throw new InvalidOperationException(response.ErrorMessage);
         
@@ -156,12 +169,20 @@ public class ApplyController : Controller {
         if (!string.IsNullOrEmpty(customer.Offer)) {
             // if cla file then cla
             var directMail = _martenService.GetDirectMail(customer.Offer).Result;
-            if (directMail.Team.ToUpper().Contains("CLA")) {
-                url = claEndpoint;
+            if (directMail != null) {
+                if (!string.IsNullOrEmpty(directMail.Team)) { 
+
+                    if (directMail.Team.ToUpper().Contains("CLA")) {
+                        url = claEndpoint;
+                    }
+                    // if tpl file then tpl
+                    else if (directMail.Team.ToUpper().Contains("TPL")) {
+                        url = tplEndpoint;
+                    }
+                }
             }
-            // if tpl file then tpl
-            else if (directMail.Team.ToUpper().Contains("TPL")) {
-                url = tplEndpoint;
+            else {
+                _logger?.LogInformation($"Promocode used but not found in direct mail table {customer.Offer}");
             }
         }
 

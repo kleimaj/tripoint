@@ -1,12 +1,12 @@
 ﻿    <!-- great-news section start -->
        <section class=" great-news congratulations">
-         <div class="custom-padding">
+         <div class="custom-padding-con">
            <div class="container">
              <div class="row justify-content-center">
                <div class="col-xl-10 col-lg-12 col-md-12">
                  <div class="news-details text-center">
                      <h1 class="title m-0 blue-text">Congratulations! </h1>
-                     <h3>A loan specialist will call you shortly to review your offer. <br class="d-lg-block d-none"> <b>If you need immediate assistance, please call <a href="tel:(877) 800-5343">(877) 800-5343.</a></b></h3>
+                     <h3>Your options are ready to review, and a member of our team will reach out shortly to review your options! <br/> <br/><b>To reach a member of our team please call <a href="tel:(877) 800-5343">(877) 800-5343.</a></b></h3>
                      
                      <div class="d-flex justify-content-center">
                        <a href="/" class="comman-btn blue-outline back-btn">Back</a>
@@ -23,8 +23,8 @@
 
    
 <style asp-add-nonce="true">
-	.custom-padding {
-        padding: 178px 0 90px !important;
+	.custom-padding-con {
+        padding: 70px 0 90px;
 	}
    .news-details h3 {
    	 font-size: 30px;
@@ -137,12 +137,22 @@
     .question a i {
    	 margin-right: 9px;
    }
+   @@media (min-width: 1499px) {
+      		.custom-padding-con {
+      		 padding:  193px 0 90px;
+      	}}
     @@media (max-width: 1199px) {
    	 .custom-form .verify-btn {
    		 padding: 38px 0 0;
    	}
+   	.custom-padding-con {
+   			padding: 30px 0 60px;
+   			}
    }
     @@media (max-width: 991px) {
+    .custom-padding-con {
+       			padding: 30px 0 60px;
+       			}
    	 .news-details h3 {
    		 font-size: 22px;
    		 line-height: 26px;

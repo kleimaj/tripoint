@@ -45,10 +45,10 @@
                         <div class="custom-form">
                             <div class="quote-title">
                                 <h2 class="mb-3">
-                                    Get Started With A Quick And Easy Quote
+                                    Get Your Options Today!
                                 </h2>
                                 <p>
-                                    <b>If you received an Offer Code </b> enter it below and select “Get My Quote.”
+                                    <b>If you received an Offer Code </b> enter it below and select Check My Offers.
                                 </p>
                             </div>
                             <form id="@formConfig.FormId" asp-formhelper="true" asp-dataType="FormData" asp-controller="Home" asp-action="SaveShort" enctype="multipart/form-data" formhelper>
@@ -96,9 +96,9 @@
                                    @await Html.PartialAsync("Partials/_CloudflareTurnstile") 
                                 </div>
                                 
-                                <button id="submit-verify" type="submit" class="comman-btn green-btn btn-submit-form">Get My Quote</button>
+                                <button id="submit-verify" type="submit" class="comman-btn green-btn btn-submit-form">Check My Offers</button>
                                 <p class="view-rate mb-0">
-                                    By clicking ‘Get Your Quote’, you authorize – with
+                                    By clicking Check My Offers, you authorize – with
                                     respect to the telephone number provided above and any
                                     other telephone number associated or related to you that
                                     may be provided to us in the future — TRIPOINT LENDING LLC<sup>®</sup>
@@ -130,9 +130,10 @@
 <style asp-add-nonce="true">
     .text-danger {
         --bs-text-opacity: 1;
-        color: rgba(var(--bs-danger-rgb),var(--bs-text-opacity))!important;
+        color: rgb(79, 38, 118, var(--bs-text-opacity))!important;
         height: 21px;
         display: block;
+        font-family: sans-serif;
     }
     .fetchhide {
        display: none;

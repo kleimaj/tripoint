@@ -1,24 +1,51 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-     <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>TriPoint</title>
-        <link asp-add-nonce="true" rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-        <link asp-add-nonce="true" rel="stylesheet" href="css/bootstrap.min.css" />
-        <link asp-add-nonce="true"rel="stylesheet" href="css/slick.css" />
-      <!--  <link rel="stylesheet" href="css/selectric.css" />-->
-        <link asp-add-nonce="true" rel="stylesheet" href="css/aos.css" />
-        <link asp-add-nonce="true"
-          rel="stylesheet"
-          href="css/font-awesome.css"
-        />
-        <link asp-add-nonce="true" rel="stylesheet" href="/formhelper/formhelper.min.css"/>
-     
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>TriPoint</title>
+	<link asp-add-nonce="true" rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+	<link asp-add-nonce="true" rel="stylesheet" href="css/bootstrap.min.css" />
+	<link asp-add-nonce="true"rel="stylesheet" href="css/slick.css" />
+	<!--  <link rel="stylesheet" href="css/selectric.css" />-->
+	<link asp-add-nonce="true" rel="stylesheet" href="css/aos.css" />
+	<link asp-add-nonce="true"
+	      rel="stylesheet"
+	      href="css/font-awesome.css"
+	/>
+	<link asp-add-nonce="true" rel="stylesheet" href="/formhelper/formhelper.min.css"/>
+        
+	<!-- Google Tag Manager -->
+	<script asp-add-nonce="true">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+     })(window,document,'script','dataLayer','GTM-M9GZMJB');</script>
+	<!-- End Google Tag Manager -->
+	<script>UST_CT = [];UST = { s: Date.now(), addTag: function(tag) { UST_CT.push(tag) } };UST.addEvent = UST.addTag;</script>
+	<script src="https://uxwizz.landers.teamdms.dev/server/ust-rr.min.js?v=5.3.0" async></script>
 </head>
-<body>
+<!-- Matomo -->
+<script>
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//matomo.landers.teamdms.dev/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '10']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
 
+<body>
+<noscript><iframe asp-add-nonce="true" src="https://www.googletagmanager.com/ns.html?id=GTM-M9GZMJB"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 @await Html.PartialAsync("Partials/_Header")
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -66,6 +93,7 @@ window.addEventListener("load", function () {
 	
   body {
   	 color: #0a210f;
+  	 font-family:  sans-serif;
   }
    .body-show {
   	 overflow: hidden;
@@ -141,23 +169,22 @@ window.addEventListener("load", function () {
   	 color: #fff;
   }
    .comman-btn {
-  	 font-family: 'Open Sans', sans-serif;
-  	 padding: 13px 20px;
-  	 font-weight: 700;
-  	 width: 250px;
-  	 display: flex;
-  	 align-items: center;
-  	 justify-content: center;
-  	 text-align: center;
-  	 border-radius: 25px;
-  	 cursor: pointer;
-  	 transition: all 0.3s;
-  	 font-size: 22px;
-  	 line-height: 22px;
-  	 position: relative;
-  	 z-index: 9;
-  	 overflow: hidden;
-  }
+       padding: 13px 20px;
+       font-weight: 700;
+       width: 245px;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       text-align: center;
+       border-radius: 25px;
+       cursor: pointer;
+       transition: all .3s;
+       font-size: 20px;
+       line-height: 22px;
+       position: relative;
+       z-index: 9;
+       overflow: hidden;
+   }
    .comman-btn::after {
   	 background-color: #5f2f90 !important;
   	 content: '';
@@ -182,11 +209,11 @@ window.addEventListener("load", function () {
   	 line-height: 71px;
   	 font-weight: 700;
   }
-   .sub-title {
+ /*  .sub-title {
   	 font-size: 50px;
   	 line-height: 68px;
   	 font-weight: 600;
-  }
+  }*/
    .sub-title span {
   	 display: inline-block;
   }
@@ -215,7 +242,6 @@ window.addEventListener("load", function () {
   }
    .custom-form .custom-row label {
   	 line-height: 20px;
-  	 font-family: 'Open Sans';
   	 position: absolute;
   	 left: 0;
   	 top: 35%;
@@ -228,7 +254,6 @@ window.addEventListener("load", function () {
   }
    .custom-form .custom-row .label {
   	 line-height: 20px;
-  	 font-family: 'Open Sans';
   	 color: #0a210f;
   	 height: 70px;
   	 display: flex;
@@ -240,7 +265,6 @@ window.addEventListener("load", function () {
   	 border: 1px solid #ccc;
   	 border-radius: 5px;
   	 line-height: 20px;
-  	 font-family: 'Open Sans', sans-serif;
   	 padding: 9px 22px;
   	 font-weight: normal;
   }
@@ -527,12 +551,12 @@ window.addEventListener("load", function () {
   	}
   }
    @@media (max-width: 1799px) {
-  	 .comman-btn {
-  		 padding: 14px 20px;
-  		 width: 210px;
-  		 font-size: 18px;
-  		 line-height: 18px;
-  	}
+  	.comman-btn {
+        padding: 14px 20px;
+        width: 220px;
+        font-size: 18px;
+        line-height: 18px;
+    }
   }
    @@media (max-width: 1499px) {
   	 .inner-container {
@@ -543,16 +567,17 @@ window.addEventListener("load", function () {
   		 font-size: 46px;
   		 line-height: 56px;
   	}
-  	 .sub-title {
-  		 font-size: 35px;
-  		 line-height: 1.3;
-  	}
+  /*.sub-title {
+      font-weight: 700;
+      font-size: 25px;
+      line-height: 1.3;
+  }*/
   	 .comman-btn {
-  		 padding: 14px 20px;
-  		 width: 180px;
-  		 font-size: 18px;
-  		 line-height: 18px;
-  	}
+         padding: 14px 20px;
+         width: 220px;
+         font-size: 18px;
+         line-height: 18px;
+     }
   	 .custom-padding {
   		 padding: 100px 0 70px;
   	}
@@ -729,9 +754,9 @@ window.addEventListener("load", function () {
    .banner-sec.career-banner {
    	 padding: 178px 0 250px;
    }
-    .banner-sec.career-banner .banner-content {
+  /*  .banner-sec.career-banner .banner-content {
    	 padding: 70px 0 0px;
-   }
+   }*/
     .banner-sec.career-banner .goal-content {
    	 top: 200px;
    }
@@ -762,7 +787,7 @@ window.addEventListener("load", function () {
    	 position: relative;
    	 z-index: 0;
    }
-    .banner-sec::after {
+  /*  .banner-sec::after {
    	 content: '';
    	 position: absolute;
    	 width: 65vw;
@@ -774,7 +799,7 @@ window.addEventListener("load", function () {
    	 z-index: -1;
    	 clip-path: polygon(0 0, 100% 0, 40% 90%, 0 70%);
    	 z-index: 1;
-   }
+   }*/
     .banner-sec::before {
    	 content: '';
    	 position: absolute;
@@ -797,30 +822,30 @@ window.addEventListener("load", function () {
    	 top: -50px;
    	 padding: 20px 0;
    }
-    .goal-content h3 {
+   /* .goal-content h3 {
    	 color: #a3cd39;
    	 font-size: 32px;
    	 line-height: 45px;
    	 font-weight: 700;
    	 margin: 0 0 24px;
-   }
-    .goal-content p {
+   }*/
+    /*.goal-content p {
    	 font-size: 24px;
    	 line-height: 33px;
-   }
-    .banner-content {
+   }*/
+  /*  .banner-content {
    	 padding: 70px 0 150px;
-   }
-    .banner-content h1 {
+   }*/
+  /*  .banner-content h1 {
    	 font-size: 90px;
    	 line-height: 100px;
    	 font-weight: 700;
    	 color: #5f2f90;
-   }
-    .banner-content h2 {
+   }*/
+    /*.banner-content h2 {
    	 margin: 0 0 42px;
    	 color: #0a210f;
-   }
+   }*/
     .banner-content h3 {
    	 color: #a3cd39;
    	 font-size: 32px;
@@ -833,18 +858,18 @@ window.addEventListener("load", function () {
    	 line-height: 33px;
    	 color: #a3cd39;
    }
-    .banner-content span {
+   /* .banner-content span {
    	 font-size: 18px;
    	 line-height: 24px;
    	 color: #14591d;
    	 display: inline-block;
    	 margin: 17px 0 0;
-   }
+   }*/
     .housands-people {
    	 margin-left: 100px;
    }
-    @@media only screen and (min-width: 3000px) {
-   	 .banner-sec::after {
+   /* @@media only screen and (min-width: 3000px) {
+  	 .banner-sec::after {
    		 clip-path: polygon(0 0, 90% 0, 50% 90%, 0 50%);
    	}
    }
@@ -852,7 +877,7 @@ window.addEventListener("load", function () {
    	 .banner-sec::after {
    		 clip-path: polygon(0 0, 85% 0, 65% 90%, 0 50%);
    	}
-   }
+   }*/
     .banner-section {
    	 position: relative;
    	 background: transparent linear-gradient(98deg, #5f2f90 0%, #301848 100%);
@@ -941,7 +966,6 @@ window.addEventListener("load", function () {
     .custom-form .view-rate {
    	 font-size: 12px;
    	 line-height: 1.25;
-   	 font-family: 'Open Sans';
    	 margin-top: 15px;
    	 font-weight: 300;
    }
@@ -1207,9 +1231,9 @@ window.addEventListener("load", function () {
    		 left: 70%;
    		 width: 300px;
    	}
-   	 .banner-sec::after {
+   /*	 .banner-sec::after {
    		 width: 56vw;
-   	}
+   	}*/
    	 .banner-content {
    		 padding: 0px 0 150px;
    	}
@@ -1219,6 +1243,10 @@ window.addEventListener("load", function () {
    	 .banner-sec {
    		 padding-top: 0;
    	}
+/*   	.banner-sec h1 {
+   		font-size: 47px;
+   		line-height: 44px;
+   	}*/
    	 .experience-section .goal-banner img {
    		 width: 80%;
    	}
@@ -1238,9 +1266,9 @@ window.addEventListener("load", function () {
    		 left: 70%;
    		 width: 300px;
    	}
-   	 .banner-sec::after {
+   /*	 .banner-sec::after {
    		 height: 80%;
-   	}
+   	}*/
    	 .housands-people {
    		 margin-left: 0;
    	}
@@ -1262,14 +1290,14 @@ window.addEventListener("load", function () {
    	 .banner-content {
    		 padding: 10px 0 0;
    	}
-   	 .banner-content h1 {
+ /*  	 .banner-content h1 {
    		 font-size: 60px;
    		 line-height: 60px;
-   	}
-   	 .banner-sec h1 {
-   		 font-size: 70px;
-   		 line-height: 70px;
-   	}
+   	}*/
+ 	/*.banner-sec h1 {
+		font-size: 47px;
+		line-height: 44px;
+	}*/
    	 .banner-section .banner-content {
    		 padding: 40px 0 0;
    	}
@@ -1367,15 +1395,15 @@ window.addEventListener("load", function () {
    	 .housands-people .green-btn {
    		 margin: 0 auto;
    	}
-   	 .banner-sec::after {
+   /*	 .banner-sec::after {
    		 width: 66vw;
-   	}
+   	}*/
    	 .banner-sec::before {
    		 background-size: 78% auto;
    	}
-   	 .banner-sec::after {
+   /*	 .banner-sec::after {
    		 height: 70%;
-   	}
+   	}*/
    	 .banner-content {
    		 padding: 8px 0 0;
    	}
@@ -1395,10 +1423,10 @@ window.addEventListener("load", function () {
    	 .funding-block .funding-list {
    		 padding: 0 5px 20px 35px;
    	}
-   	 .banner-content h1 {
+   /*	 .banner-content h1 {
    		 font-size: 50px;
    		 line-height: 50px;
-   	}
+   	}*/
    	 .apply-section .easy-apply ul li br {
    		 display: none;
    	}
@@ -1485,16 +1513,16 @@ window.addEventListener("load", function () {
    	 .banner-sec {
    		 padding: 15px 0 0;
    	}
-   	 .banner-sec::after {
+/*   	 .banner-sec::after {
    		 width: 100%;
    		 -webkit-clip-path: polygon(0 0, 100% 0, 100% 89%, 18% 100%, 0 76%);
    		 clip-path: polygon(0 0, 100% 0, 100% 89%, 20% 100%, 0 83%);
    		 height: 375px;
-   	}
-   	 .banner-sec h1 {
+   	}*/
+   	/* .banner-sec h1 {
    		 font-size: 40px;
    		 line-height: 45px;
-   	}
+   	}*/
    	 .banner-sec .banner-content {
    		 padding: 0 0 20px 0px;
    	}
