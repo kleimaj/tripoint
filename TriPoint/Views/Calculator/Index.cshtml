@@ -10,6 +10,18 @@
 .pg-banner {
     position: relative;
     background: rgba(0, 0, 0, 0) linear-gradient(358deg, #e7f3fc 0%, rgba(255, 255, 255, .0509803922) 100%) 0% 0%;
+    padding: 0;
+}
+.pg-banner::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url(images/Triangle-Pattern_TPL.webp);
+    width: 100%;
+    z-index: -1;
 }
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -39,12 +51,19 @@ input[type=number] {
       margin-top: 5px;
     }
     .backdrop {
-      background-color: white;
+     /* background-color: white;*/
     }
     .border-radius-card {
       border-radius: 8px 8px 0 0;
   box-shadow: 0 0 10px -6px;
+  background: white;
+  padding: 15px;
       
+    }
+    .calc-border {
+    border: 2px solid #CCCCCC;
+    border-radius: 5px;
+    padding: 2rem;
     }
     .toggle-btn {
       background-color: #BA03FC;
@@ -60,10 +79,10 @@ input[type=number] {
     }
     .debt-question h3 {
       font-size: 35px;
-      font-family: Oswald;
       line-height: 40px; 
       font-weight: 600;
-      color: #0847BA;
+      color: #5F2F90;
+      position: relative;
     }
     .debt-question p {
       font-size: 25px;
@@ -90,14 +109,17 @@ input[type=number] {
     }
     .debt-question .form-label.percent {
       left: 85% !important;
-      top: 24px !important;
+      top: 28px !important;
       font-size: 18px !important;
     }
     .debt-question .form-control {
-      border: 1px solid #0847BA !important;
+      border: 1px solid #A3CD39 !important;
     }
     .debt-section .custom-row .form-control {
       padding:  18px 22px;
+    }
+    .custom-form .custom-row label {
+      color: #5F2F90;
     }
     .debt-question .form-control::placeholder {
       color: black !important;
@@ -131,38 +153,39 @@ input[type=number] {
       color: #2E0A46;
     }
     .debt-question .btn.clear {
-      color: #0847BA;
-      border: 2px solid #0847BA;
-      font-family: Oswald;
+      color: #5F2F90;
+      border: 2px solid #5F2F90;
       font-weight: bold;
-      border-radius: 15px;
+      border-radius: 25px;
     }
     .debt-section.purple {
-      border: 2px solid #0847BA;
+      border: 2px solid #ACD2ED;
     }
     .debt-section.purple .header {
-      background: #0847BA;
-      color: white !important;
-      font-family: Oswald;
+      background: #ACD2ED;
+      color: black !important;
     }
     .debt-section.purple p {
-      color: #0847BA;
+      color: black;
     }
     .debt-section.purple h5 {
-      color: #0847BA;
+      color: black;
     }
     .debt-section.purple h1 {
-      color: #0847BA;
+      color: black;
     }
     .debt-section .link {
       color: #0d6efd !important;
     }
     .debt-section.blue {
-      border: 2px solid #D6D6D6;
+      border: 2px solid #5F2F90;
+    }
+    .debt-section.green {
+      border: 2px solid #A3CD39;
     }
     .debt-section.blue .header {
-      background: #D6D6D6;
-      color: black;
+      background: #5F2F90;
+      color: white;
     } 
     .debt-section.blue p {
       color: #0A210F;
@@ -183,12 +206,9 @@ input[type=number] {
       padding: 15px;
       border-radius: 4px 4px 0 0;
       font-weight: bold;
-      color: #0A210F;
-      font-family: Oswald;
     }
     .debt-section.box p {
       padding: 0 15px;
-      font-family: Poppins;
     }
     .debt-section.box .savings h5 {
       font-size: 20px;
@@ -198,7 +218,6 @@ input[type=number] {
       font-weight: bold;
       font-size: 45px;
       padding-bottom: 10px;
-      font-family: Oswald;
     }
     .debt-section.box .savings p {
       padding: 0 15px;
@@ -214,21 +233,19 @@ input[type=number] {
       padding: 0;
       font-family: 18px;
     }
-    .debt-section.box .box-row p span {
-      font-family: Oswald;
+    .bottom-text {
+      font-size: 25px;
     }
-    
     .debt-section.box .box-row p.jumbo {
       font-size: 28px;
-      font-family: Oswald;
       padding: 0;
     }
     .debt-section.box-result {
       padding: 15px;
-      border: 2px solid #0847BA;
+      border: 2px solid #5f2f90;
     }
     .debt-section .custom-row strong { 
-      color: #2E0A46;
+      color: #5F2F90;
     }
     .check-rate {
       background-color: #536380; 
@@ -306,6 +323,10 @@ input[type=number] {
     @@media (max-width: 767px) {
       .backdrop {
         margin-top: 5vh;
+      }
+      .calc-border {
+        padding: 0;
+        border: none;
       }
       .debt-block {
         clip-path: unset;
