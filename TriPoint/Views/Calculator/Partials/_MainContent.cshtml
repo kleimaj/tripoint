@@ -26,7 +26,7 @@
                             hideCurrencySymbolOnFocus: false,
                             hideGroupingSeparatorOnFocus: false,
                             hideNegligibleDecimalDigitsOnFocus: false,
-                            valueRange: {min: 0, max: 500000}}" class="form-control" placeholder="$0" ref="inputRef"  keyup="autoCalculate($event)" id="totalDebt" type="number" />
+                            valueRange: {min: 0, max: 500000}}" class="form-control" placeholder="$0" ref="inputRef"  keyup="autoCalculate($event)" id="totalDebt"  />
                         <label class="form-label">Total</label>
                         </div>
                         <!-- <div class="debt-question custom-row mb-md-0">
@@ -110,7 +110,7 @@
                             hideCurrencySymbolOnFocus: false,
                             hideGroupingSeparatorOnFocus: false,
                             hideNegligibleDecimalDigitsOnFocus: false,
-                            valueRange: {min: 0, max: 500000}}" class="form-control" ref="inputRef2" change="minPaymentChange()" type="number" keyup="autoCalculateMin($event)" placeholder="$0" id="minTotal"/>
+                            valueRange: {min: 0, max: 500000}}" class="form-control" ref="inputRef2" change="minPaymentChange()" keyup="autoCalculateMin($event)" placeholder="$0" id="minTotal"/>
                             <label class="form-label">Total</label>
                             </div>
                         </div>
@@ -212,7 +212,7 @@
                                 <h5>In that time, you will pay:</h5>
                                 <h1 class="mb-0 pb-2">$<span id="minInterest">0.00</span></h1>
                                 <h5 class="mb-4">in interest.</h5>
-                                <p class="link text-decoration-underline d-none d-md-block" role="button" id="showPaymentSchedule">Show payment schedule</p>
+                                <p class="link text-decoration-underline d-none d-md-none" role="button" id="showPaymentSchedule">Show payment schedule</p>
                             </div>
                         </div>
                         <h4 class="my-2 text-center">VS.</h4>
@@ -454,7 +454,7 @@ function resetPayOff() {
     }
 function calcPayOff() {
     var totalDebt = $("#totalDebt").val()
-    console.log(totalDebt);
+    totalDebt = Number(totalDebt.replace(/[^0-9.-]+/g,""));
     if (totalDebt <= 0 && totalDebt < 100000) {
         // this.resetPayOff();
     }
@@ -491,13 +491,13 @@ function calcPayOff() {
         var payOffTotalInterest = totalInterest
         var consolidationTotalInterest = consolTotalInterest;
         var consolidationTotalCost = parseFloat(totalDebt) + consolidationTotalInterest;
-        $('#payoffTotalInterest').text(payOffTotalInterest.toFixed(2));
-        $('#payoffMonthlyPayment').text(payOffMonthly.toFixed(2));
-        $('#payoffTotalCost').text(payOffTotalCost.toFixed(2));
-        $('#consolidationTotalInterest').text(consolTotalInterest.toFixed(2));
-        $('#consolidationMonthlyPayment').text(consolidationMonthly.toFixed(2));
-        $('#consolidationTotalSavings').text(consolidationSavings.toFixed(2));
-        $('#consolidationTotalCost').text(consolidationTotalCost.toFixed(2));
+        $('#payoffTotalInterest').text(payOffTotalInterest.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+        $('#payoffMonthlyPayment').text(payOffMonthly.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+        $('#payoffTotalCost').text(payOffTotalCost.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+        $('#consolidationTotalInterest').text(consolTotalInterest.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+        $('#consolidationMonthlyPayment').text(consolidationMonthly.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+        $('#consolidationTotalSavings').text(consolidationSavings.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+        $('#consolidationTotalCost').text(consolidationTotalCost.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
         
     }
 }
@@ -512,6 +512,8 @@ function resetMinPayment() {
     $("#minPayment").text('15');
     this.fixedPayment = 15;
     $("#fixedPayment").val('15');
+    $("#personalMonths").text('0');
+    $("#personalInterest").text('0.00');
 }
 function minPaymentChange() {
     var minTotal = parseFloat($('#minTotal').val());
@@ -536,7 +538,8 @@ function minPaymentChange() {
     $("#fixedPayment").val(minPayment.toFixed(2));
 }
 function calcMinPayment() {
-    var minTotal = parseFloat($('#minTotal').val());
+    var minTotal = $('#minTotal').val();
+    minTotal = Number(minTotal.replace(/[^0-9.-]+/g,""));
     var minInterestRate = $('#minInterestRate').val();
     var minCalculated = $('#minCalculated').val();
     var toggleFixedPayment = $('#fixedPaymentRadio').is(':checked');
@@ -587,7 +590,7 @@ function calcMinPayment() {
             i++;
         }
         $('#minMonths').text(i);
-        $('#minInterest').text(totalInterestPaid.toFixed(2));
+        $('#minInterest').text(totalInterestPaid.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
         var personalRate = .0695 / 12;
         var personalTerm = 5 * 12;
         var loanMonthly = (parseFloat(minTotal) * personalRate * Math.pow(1+personalRate,personalTerm)) / (Math.pow(1+personalRate,personalTerm)-1);
@@ -606,7 +609,7 @@ function calcMinPayment() {
             row.balance= remaining;
         }
         $('#personalMonths').text(personalTerm);
-        $('#personalInterest').text(totalInterest.toFixed(2));
+        $('#personalInterest').text(totalInterest.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
     }
 }
 function resetPersonalLoan() {
@@ -621,6 +624,7 @@ function resetPersonalLoan() {
 }
 function calcPersonalLoan() {
     var loanAmount = $('#loanAmount').val();
+    loanAmount = Number(loanAmount.replace(/[^0-9.-]+/g,""));
     var loanTerm = $('#loanTerm').val();
     var loanInterest = $('#loanInterest').val();
     this.AmortItems = [];
@@ -654,9 +658,9 @@ function calcPersonalLoan() {
             this.AmortItems.push(row);
         }
         var loanTotalInterest = totalInterest;
-        $("#principalPaid").text(loanAmount);
-        $("#totalInterestPaid").text(loanTotalInterest.toFixed(2));
-        $("#estimatedPayment").text(loanMonthly.toFixed(0));
+        $("#principalPaid").text(loanAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+        $("#totalInterestPaid").text(loanTotalInterest.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+        $("#estimatedPayment").text(loanMonthly.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
     }
 }
 window.addEventListener("load", function () {
@@ -675,6 +679,18 @@ $( document ).ready(function() {
         calcPayOff(); 
         calcMinPayment();
         calcPersonalLoan();
+    });
+    new Cleave('#totalDebt', {
+        numeral: true,
+        prefix: '$'
+    });
+    new Cleave('#minTotal', {
+        numeral: true,
+        prefix: '$'
+    });
+    new Cleave('#loanAmount', {
+        numeral: true,
+        prefix: '$'
     });
 /*    $("#totalDebt").change(function (e) {
         const formatter = new Intl.NumberFormat("en-US", {style: "currency", currency: "USD"});
