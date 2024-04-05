@@ -7,6 +7,7 @@ using FormHelper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using RestSharp;
 using TriPoint.Models;
 using TriPoint.Models.Const;
@@ -79,6 +80,12 @@ public class ApplyController : Controller {
             }
             catch (Exception e) {
                 _logger.LogError("{HttpContextTraceIdentifier}", Activity.Current?.Id ?? HttpContext.TraceIdentifier);
+            }       
+            try {
+                postToSalesforce(customer);
+            }
+            catch (Exception e) {
+                _logger.LogError("{HttpContextTraceIdentifier}", Activity.Current?.Id ?? HttpContext.TraceIdentifier);
             }
             
             try {
@@ -109,7 +116,7 @@ public class ApplyController : Controller {
    /// <exception cref="InvalidOperationException"></exception>
     internal void postToCRM(Customer customer) {
         var url = GetEndpointUrl(customer);
-
+        
         var client = new RestClient(url);
         var request = new RestRequest($"") {
             Method = Method.Post
@@ -145,6 +152,126 @@ public class ApplyController : Controller {
         
     }
 
+    internal void postToSalesforce(Customer customer) {
+        var url = TripointSalesforce.base_url;
+        var tokenPath = TripointSalesforce.token_url;
+        // request token from salesforce api
+        var client = new RestClient(tokenPath);
+        var request = new RestRequest("") {
+            Method = Method.Post
+        };
+        request.AddParameter("grant_type", TripointSalesforce.grant_type);
+        request.AddParameter("client_id", TripointSalesforce.client_id);
+        request.AddParameter("client_secret", TripointSalesforce.client_secret);
+
+        var token = client.Execute<Tpl2Salesforce.TripointSalesforceResponse>(request);
+        token.Data = JsonConvert.DeserializeObject<Tpl2Salesforce.TripointSalesforceResponse>(token.Content);
+        if (token.IsSuccessful == false) throw new InvalidOperationException(token.ErrorMessage);
+        var accessToken = token.Data.AccessToken;
+        // post to salesforce api
+        client = new RestClient(url);
+        request = new RestRequest("") {
+            Method = Method.Post
+        };
+        request.AddHeader("Authorization", "Bearer " + accessToken);
+        request.AddHeader("Content-Type", "application/json");
+        var lead = new Tpl2Salesforce.Prospect {
+            FirstName = customer.FirstName,
+            LastName = customer.LastName,
+            Email = customer.Email,
+            CellPhone = customer.Cell,
+            HomePhone = customer.Phone,
+            LoanAmount = customer.LoanAmount,
+            Team = GetTeam(customer),
+            OfferCode = string.IsNullOrEmpty(customer.Offer)?"None":customer.Offer
+        };
+        if(lead.Team.Contains("TPL")) {
+            _logger.LogInformation("Lead is going to TPL Team, skipping post to salesforce CRM {@lead}",
+                JsonConvert.SerializeObject(lead));
+            return;
+        }
+        else {
+
+
+            if (!String.IsNullOrEmpty(customer.Offer)) {
+                var directMail = _martenService.GetDirectMail(customer.Offer).Result;
+                if (directMail != null) {
+                    //add directmail information to lead
+                    lead.Address = directMail.Address;
+                    lead.State = directMail.StateCode;
+                    lead.City = directMail.City;
+                    lead.ZipCode = directMail.Zip;
+                }
+            }
+
+            var prospects = new Tpl2Salesforce.TripointProspects {
+                Prospects = new[] { lead }
+            };
+
+            request.AddJsonBody(JsonConvert.SerializeObject(prospects));
+            _logger.LogInformation("Posting lead to salesforce CRM: {@lead}", JsonConvert.SerializeObject(prospects));
+
+            var leadResponse = client.Execute(request);
+            _logger.LogInformation("Sending Lead: {leadResponse}", JsonConvert.SerializeObject(lead));
+            if (leadResponse.IsSuccessful == false) {
+                _logger.LogCritical("ERROR with Content: {leadResponse}", leadResponse.Content);
+                _logger.LogCritical("ERROR with ErrorMessage: {leadResponse}", leadResponse.ErrorMessage);
+                _logger.LogCritical("ERROR with ResponseStatus: {leadResponse}", leadResponse.ResponseStatus);
+                throw new InvalidOperationException(leadResponse.ErrorMessage);
+            }
+            else {
+                _logger.LogInformation("LeadResponse Content: {leadResponseId}", leadResponse.Content);
+                _logger.LogInformation("LeadResponse ResponseStatus: {leadResponseId}", leadResponse.ResponseStatus);
+                _logger.LogInformation("LeadResponse StatusCode: {leadResponseId}", leadResponse.StatusCode);
+                _logger.LogInformation("LeadResponse ErrorMessage: {leadResponseId}", leadResponse.ErrorMessage);
+            }
+        }
+    }
+     private string GetTeam(Customer customer) {
+            var team = "TPL - Website";
+           // anything under 20k goes to CLA
+           //remove potential special characters from customer loan amount
+           var loanAmt = customer.LoanAmount.Replace("$", "").Replace(",", "");
+           _logger.LogInformation("Loan Amount: {loanAmt}", loanAmt);
+           if (decimal.TryParse(loanAmt, out var loanAmount)) {
+               if (loanAmount < 20000) {
+                   _logger.LogInformation("Loan Amount is less than 20k");
+                   team = "CLA - Website";
+               }
+               // everything else goes to TPL
+               else {
+                   _logger.LogInformation("Loan Amount is greater than 20k");
+               }
+           }
+           else {
+               _logger.LogError("Unable to parse loan amount, defaulting to tplEndpoint");
+           }
+   
+           // if offer is not null then check if offer code belongs to cla or tpl
+           if (!string.IsNullOrEmpty(customer.Offer)) {
+               // if cla file then cla
+               var directMail = _martenService.GetDirectMail(customer.Offer).Result;
+               if (directMail != null) {
+                   if (!string.IsNullOrEmpty(directMail.Team)) { 
+                       if (directMail.Team.ToUpper().Contains("CLA")) {
+                           team = "CLA - Website";
+                       }
+                       // if tpl file then tpl
+                       else if (directMail.Team.ToUpper().Contains("TPL")) {
+                           team = "TPL - Website";
+                       }
+                   }
+               }
+               else {
+                   _logger?.LogError($"Promocode used but not found in direct mail table {customer.Offer}");
+               }
+           }
+           _logger.LogInformation("Team: {team}");
+           return team;
+       }
+
+
+   
     /// <summary>
     ///   Get endpoint url based on loan amount and offer code
     /// </summary>
@@ -157,11 +284,23 @@ public class ApplyController : Controller {
         var claEndpoint = CrmEndpoints.claEndpoint;
         var tplEndpoint = CrmEndpoints.tplEndpoint;
         // anything under 20k goes to CLA
-        if (loanAmtList.FindIndex(x => x.Value.Contains(customer.LoanAmount)) < 3) {
-            url = claEndpoint;
+        
+        //remove potential special characters from customer loan amount
+        var loanAmt = customer.LoanAmount.Replace("$", "").Replace(",", "");
+        _logger.LogInformation("Loan Amount: {loanAmt}", loanAmt);
+        if (decimal.TryParse(loanAmt, out var loanAmount)) {
+            if (loanAmount < 20000) {
+                _logger.LogInformation("Loan Amount is less than 20k");
+                url = claEndpoint;
+            }
+            // everything else goes to TPL
+            else {
+                _logger.LogInformation("Loan Amount is greater than 20k");
+                url = tplEndpoint;
+            }
         }
-        // everything else goes to TPL
         else {
+            _logger.LogError("Unable to parse loan amount, defaulting to tplEndpoint");
             url = tplEndpoint;
         }
 
