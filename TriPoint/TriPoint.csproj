@@ -29,7 +29,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <AdditionalFiles Include="Views\ThankYou\Partials\_CustomerFooter.cshtml" />
         <AdditionalFiles Include="Views\ThankYou\Partials\_MainContent.cshtml" />
     </ItemGroup>
 
