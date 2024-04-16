@@ -1,0 +1,752 @@
+﻿<!-- page banner section desgin start -->
+
+<section class="pg-banner mt-5">
+<div class="backdrop">
+        <section class="container debt-block mt-2 pb-4 pt-md-5">
+        <div class="border-radius-card">
+            <div class="white-bg pb-2">
+            <button class="toggle-btn d-none"><img class="toggle-1" src="/images/down.svg" alt="down arrow"/></button>
+        <div class="container toggle-1-content bg-white text-lg-start p-md-5">
+            <div class="col-lg-12 col-md-12">
+                <div class="debt-section text-center">
+                    <div class="debt-question mb-4 d-flex flex-column align-items-md-center">
+                        <h3 class="col-md-7 mb-4 lh-sm text-md-start col-md-12">Debt Repayment Calculator</h3>
+                        <p class="col-md-12 text-md-start">Trying to pay down a large credit card balance? Let us know how much you’d like to pay per month, or when you’d like to be debt-free, and we’ll help you come up with a monthly payment plan.</p>
+                        <br/>
+                        <a class="d-none" href="#">How it works.</a>
+                    </div>
+                </div>
+                <div class="calc-border">
+                <div class="debt-section custom-form d-block d-md-flex align-items-end justify-content-between">
+                    <div class="debt-question custom-row mb-md-0 col-md-6">
+                        <p><strong>Total Credit Card Debt</strong></p>
+                        <br/>
+                        <div class="error-message">
+                        <input :options="{ currency: 'USD',       
+                            hideCurrencySymbolOnFocus: false,
+                            hideGroupingSeparatorOnFocus: false,
+                            hideNegligibleDecimalDigitsOnFocus: false,
+                            valueRange: {min: 0, max: 500000}}" class="form-control" placeholder="$0" ref="inputRef"  keyup="autoCalculate($event)" id="totalDebt"  />
+                        <label class="form-label">Total</label>
+                        </div>
+                        <!-- <div class="debt-question custom-row mb-md-0">
+                        <p><strong>Payoff Loan Term (yrs)</strong></p>
+                        <br/>
+                        <div class="error-message">
+                        <input class="form-control" placeholder="$0" v-model="payOffTerm" change="updateAllLoanTerms()" type="number" />
+                        <label class="form-label">Years</label>
+                        </div> -->
+                    <!-- </div> -->
+                    </div>
+                    <div class="debt-question mb-0 col-md-6">
+                        <div class="button-group d-flex flex-column flex-md-row d-md-flex align-items-center justify-content-evenly">
+                            <button id="calcPayOff" class="btn comman-btn green-btn mb-3 mb-md-0">CALCULATE</button>
+                            <button id="resetPayOff" class="btn clear mb-4 mb-md-0">RESET</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-block d-md-flex">
+                    
+                    <div class="debt-section box purple mt-4 me-md-2  col-md-6">
+                        <h4 class="header">Consolidation Loan</h4>
+                        <p class="pt-2">Time to Payoff: <strong>5 Years</strong></p>
+                        <p>Total Interest Paid: <strong>$<span id="consolidationTotalInterest">0.00</span></strong></p> 
+                        <p>Interest Rate: <strong>6.95%</strong></p>
+                        <p>Monthly Payment: <strong>$<span id="consolidationMonthlyPayment">0.00</span></strong></p>
+                        <p>Total Savings: <strong>$<span id="consolidationTotalSavings">0.00</span></strong></p>
+                        <div class="savings">
+                            <h5>Total Cost:</h5>
+                            <h1>$<span id="consolidationTotalCost">0.00</span></h1>
+                            <p class="col-md-6 m-auto mb-4 d-none">Payoff numbers are calculated based on the national average</p>
+                        </div>
+                    </div>
+                    <div class="debt-section box blue mt-4 ms-md-2 col-md-6">
+                        <h4 class="header">Current Payoff</h4>
+                        <p class="pt-2">Time to Payoff: <strong>30 Years</strong></p>
+                        <p>Total Interest Paid: <strong>$<span id="payoffTotalInterest">0.00</span></strong></p> 
+                        <p>Interest Rate: <strong>22%</strong></p>
+                        <p>Monthly Payment: <strong>$<span id="payoffMonthlyPayment">0.00</span></strong></p>
+                        <!-- <p>Total Cost: <strong>${{ payOffTotalCost.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}</strong></p> --><br/>
+                        <div class="savings">
+                            <h5>Total Cost:</h5>
+                            <h1>$<span id="payoffTotalCost">0.00</span></h1>
+                            <p class="col-md-6 m-auto mb-4">Payoff numbers are calculated based on the national average</p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+            <div class="bg-white toggle-1-hidden text-lg-start mb-4 px-md-5  d-none">
+                <div class="col-lg-12 col-md-12">
+                <div class="debt-section text-center">
+                <div class="debt-question mb-4 d-flex flex-column align-items-md-center">
+                    <h3 class="col-md-12 lh-sm">Debt Repayment Calculator</h3>
+                </div>
+                </div>
+                </div>
+            </div>
+            </div>
+            <div class="white-bg pb-2 ">
+            <button class="toggle-btn d-none"><img class="toggle-2" src="images/down.svg" alt="down arrow"/></button>
+
+            <div class="container toggle-2-content bg-white text-lg-start p-md-5">
+            <div class="col-lg-12 col-md-12">
+                <div class="debt-section text-center">
+                    <div class="debt-question d-flex flex-column align-items-md-start align-items-center mb-md-4 px-md-4">
+                        <h3 class="mb-md-4 text-md-start col-md-12">Minimum Payment 
+                            Calculator</h3>
+                        <p class="text-md-start">Trying to pay down a large credit card balance? Let us know how much you’d like to pay per month, or when you’d like to be debt-free, and we’ll help you come up with a monthly payment plan.</p>
+                    </div>
+                </div>
+                <div class="calc-border">
+                <div class="d-block d-md-flex align-items-start">
+                    <div class="debt-section custom-form col-md-6 px-md-4">
+                        <div class="debt-question custom-row">
+                            <p><strong>What is your credit card balance?</strong></p>
+                            <br/>
+                            <div class="error-message">
+                            <input :options="{ currency: 'USD',       
+                            hideCurrencySymbolOnFocus: false,
+                            hideGroupingSeparatorOnFocus: false,
+                            hideNegligibleDecimalDigitsOnFocus: false,
+                            valueRange: {min: 0, max: 500000}}" class="form-control" ref="inputRef2" change="minPaymentChange()" keyup="autoCalculateMin($event)" placeholder="$0" id="minTotal"/>
+                            <label class="form-label">Total</label>
+                            </div>
+                        </div>
+                        <div class="debt-question custom-row">
+                            <p><strong>What is the interest rate on your credit card?</strong></p>
+                            <br/>
+                            <select class="multiselect form-select form-control" id="minInterestRate">
+                                    <option value=".01">1%</option>
+                                    <option value=".02">2%</option>
+                                    <option value=".03">3%</option>
+                                    <option value=".04">4%</option>
+                                    <option value=".05">5%</option>
+                                    <option value=".06">6%</option>
+                                    <option value=".07">7%</option>
+                                    <option value=".08">8%</option>
+                                    <option value=".09">9%</option>
+                                    <option value=".1">10%</option>
+                                    <option value=".11">11%</option>
+                                    <option value=".12">12%</option>
+                                    <option value=".13">13%</option>
+                                    <option value=".14">14%</option>
+                                    <option value=".15">15%</option>
+                                    <option value=".16">16%</option>
+                                    <option value=".17">17%</option>
+                                    <option value=".18">18%</option>
+                                    <option value=".19">19%</option>
+                                    <option value=".20">20%</option>
+                                    <option value=".21">21%</option>
+                                    <option value=".22" selected>22%</option>
+                                    <option value=".23">23%</option>
+                                    <option value=".24">24%</option>
+                                    <option value=".25">25%</option>
+                                    <option value=".26">26%</option>
+                                    <option value=".27">27%</option>
+                                    <option value=".28">28%</option>
+                                    <option value=".29">29%</option>
+                                    <option value=".30">30%</option>
+                                    <option value=".31">31%</option>
+                                    <option value=".32">32%</option>
+                                    <option value=".33">33%</option>
+                                    <option value=".34">34%</option>
+                                    <option value=".35">35%</option>
+                                    <option value=".36">36%</option>
+                                    <option value=".37">37%</option>
+                                    <option value=".38">38%</option>
+                            </select>
+                        </div>
+                        <div class="debt-question custom-row mb-md-5">
+                            <p><strong>How is your minimum payment calculated?</strong></p>
+                            <br/>
+                            <select class="multiselect form-select form-control mb-md-5" change="minPaymentChange()" id="minCalculated">
+                                <option value=".01" selected>Interest + 1% of balance</option>
+                                <option value=".02">2% of balance</option>
+                                <option value=".0208">2.08% of balance</option>
+                                <option value=".025">2.5% of balance</option>
+                                <option value=".0278">2.78% of balance</option>
+                                <option value=".03">3% of balance</option>
+                                <option value=".035">3.5% of balance</option>
+                                <option value=".04">4% of balance</option>
+                                <option value=".045">4.5% of balance</option>
+                                <option value=".05">5% of balance</option>
+                            </select>
+                        </div>
+                        <div class="debt-question custom-row invisible mt-md-5 pb-md-5 d-none d-md-block">
+                            <p class="text-black">Your minimum payment: <strong>$<span id="minPayment">15.00</span></strong></p>
+                            <p class="text-black mt-4"><strong>Select a payment schedule based on:</strong></p>
+                            <br/>
+                            <div class="form-check">
+                            <input class="form-check-input" id="minPaymentRadio" type="radio" name="flexRadioDefault" change="showFixedPayment()" checked>
+                            <label class="form-check-label">
+                                Minimum payment
+                            </label>
+                            </div>
+                            <div class="form-check">
+                            <input class="form-check-input" id="fixedPaymentRadio" type="radio" name="flexRadioDefault" change="showFixedPayment()">
+                            <label class="form-check-label">
+                                Fixed payment
+                            </label>
+                            </div>
+                        </div>
+                        <div class="debt-question custom-row fixed-payment d-none">
+                            <p><strong>What fixed payment could you make monthly?</strong></p>
+                            <br/>
+                            <div class="error-message">
+                            <input class="form-control" placeholder="$0" id="fixedPayment" value="15" change="updateFixedPayment()"/>
+                            <label class="form-label">Total</label>
+                            </div>
+                        </div>
+                        <div class="debt-question d-flex flex-column mb-0 flex-md-row mt-md-5">
+                            <button id="calcMinPayment" class="btn comman-btn green-btn mb-3 mb-md-0 me-md-4">CALCULATE</button>
+                            <button id="resetMinPayment" class="btn comman-btn clear mb-4 mb-md-0">CLEAR ALL</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6 pe-md-4 pt-md-5">
+                        <div class="debt-section box green pb-4 px-md-4 mt-md-4">
+                            <p class="pt-2 mt-4"><strong>With a <span id="toggleFixedPayment">minimum</span> payment:</strong></p>
+                            <p class="col-md-6 m-auto mb-3">It will take you <strong> <span id="minMonths">0</span>  months</strong> to pay off your debt.</p> 
+                            <div class="savings">
+                                <h5>In that time, you will pay:</h5>
+                                <h1 class="mb-0 pb-2">$<span id="minInterest">0.00</span></h1>
+                                <h5 class="mb-4">in interest.</h5>
+                                <p class="link text-decoration-underline d-none d-md-none" role="button" id="showPaymentSchedule">Show payment schedule</p>
+                            </div>
+                        </div>
+                        <h4 class="my-2 text-center">VS.</h4>
+                        <div class="debt-section box blue pb-4 px-md-4">
+                            <p class="pt-2 mt-4"><strong>A Personal Loan</strong></p>
+                            <p class="col-md-6 m-auto mb-3">It will take you <strong> <span id="personalMonths">0</span>  months</strong> to pay off your debt.</p> 
+                            <div class="savings">
+                                <h5>In that time, you will pay:</h5>
+                                <h1 class="mb-0 pb-2">$<span id="personalInterest">0.00</span></h1>
+                                <h5 class="mb-4">in interest.</h5>
+                                <a href="/apply"><button class="btn comman-btn green-btn mb-3 mb-md-0 mx-auto">Apply Now</button></a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="px-md-4 my-4">These results are calculated based on an interest rate of 6.95% and a 5 year term. Your individual offer may vary.</p>
+                    </div>
+                    <div class="d-none d-md-block">
+                <div class="schedule payment-schedule d-none mt-4 p-4">
+                            <h4>Payment Schedule</h4>
+                            <div class="table d-flex align-items-center">
+                                <div class="col-md-2">
+                                    <p>Month</p>
+                                </div>
+                                <div class="col-md-3">
+                                    <p>Fixed Payment</p>
+                                </div>
+                                <div class="col-md-2">
+                                    <p>Interest Paid</p>
+                                </div>
+                                <div class="col-md-2">
+                                    <p>Prinicipal Paid</p>
+                                </div>
+                                <div class="col-md-3">
+                                    <p>Remaining Balance</p>
+                                </div>
+                            </div>
+                                @*<MinPaySchedule v-for="(item,idx) in MinPayItems" :key="idx" v-bind="item"/>*@
+                        </div>
+                </div>
+            </div>
+            </div>
+            <div class="bg-white toggle-2-hidden text-lg-start mb-4 px-md-5  d-none">
+                <div class="col-lg-12 col-md-12">
+                <div class="debt-section text-center">
+                <div class="debt-question mb-4 d-flex flex-column align-items-md-center">
+                    <h3 class="col-md-12 lh-sm text">Minimum Payment Calculator</h3>
+                </div>
+                </div>
+                </div>
+            </div>
+            </div>
+            <div class="white-bg mb-3 pb-2 ">
+            <button class="toggle-btn d-none"><img class="toggle-3" src="/images/down.svg" alt="down arrow"/></button>
+            <div class="container toggle-3-content bg-white text-lg-start pb-4 px-md-5 ">
+            <div class="col-lg-12 col-md-11">
+                <div class="debt-section text-center">
+                    <div class="debt-question mb-md-3">
+                    <h3 class="mb-md-4 text-md-start ">Personal Loan
+    Calculator</h3>
+                    <p class="col-md-12 m-auto text-md-start">This personal loan calculator will help
+                        you determine the monthly
+                        payments on a loan. To see your
+                        estimated monthly payments and
+                        total interest you’ll pay, just enter the
+                        loan amount, loan term and interest
+                        rate in the fields below and click
+                        calculate.
+                    </p>
+                    </div>
+                </div>
+                <div class="d-block d-md-flex justify-content-center calc-border">
+                    
+                    <div class="debt-section custom-form col-md-6 pe-md-4">
+                        <div class="debt-question custom-row">
+                            <h3 class="text-black mb-2 loan-info mb-md-4">Loan info</h3>
+                            <p><strong>Loan amount</strong></p>
+                            <br/>
+                            <div class="error-message">
+                                <input :options="{ currency: 'USD',       
+                            hideCurrencySymbolOnFocus: false,
+                            hideGroupingSeparatorOnFocus: false,
+                            hideNegligibleDecimalDigitsOnFocus: false,
+                            valueRange: {min: 0, max: 500000}}"
+                                       class="form-control" placeholder="$0" keyup="autoCalculatePersonal($event)" id="loanAmount"/>
+                                <label class="form-label">Amount</label>
+                            </div>
+                        </div>
+                        <div class="debt-question custom-row">
+                            <p><strong>Loan term (yrs)</strong> Terms can be from 3-12 years</p>
+                            <br/>
+                            <input class="form-control" type="number" min="1" id="loanTerm" value="5"/>
+                        </div>
+                        <div class="debt-question custom-row">
+                            <p><strong>Interest rate</strong></p>
+                            <br/>
+                            <div class="error-message">
+                                <input class="form-control" type="number" min="0" value="6.95" id="loanInterest"/>
+                                <label class="form-label percent">%</label>
+                            </div>
+                        </div>
+                        <div class="debt-question d-flex flex-column mb-0 mb-md-5 mt-md-5 flex-md-row">
+                            <button id="calcPersonalLoan" class="btn comman-btn green-btn mb-3 mb-md-0 me-md-4">CALCULATE</button>
+                            <button id="resetPersonalLoan" class="btn comman-btn clear mb-4 mb-md-0 ms-md-4">CLEAR ALL</button>
+                        </div>
+                    </div>
+                    <div class="debt-section box box-result blue pb-4 mb-4 text-start col-md-6 ms-md-4 align-self-start px-md-4 mt-md-5">
+                        <h3 class="pt-2 mt-4 ps-3"><strong>Your results:</strong></h3>
+                        <div class="box-row d-flex">
+                            <p>Total prinicipal paid</p>
+                            <p><strong>$<span id="principalPaid">0</span></strong></p></div>
+                        <div class="box-row d-flex">
+                            <p>Total interest paid</p>
+                            <p><strong>$<span id="totalInterestPaid">0.00</span></strong></p></div>
+                        <div class="box-row d-flex align-items-end">
+                            <p><strong>Estimated payment</strong></p>
+                            <p class="jumbo"><strong>$<span id="estimatedPayment">0</span></strong></p></div>
+                        <div class="box-row d-flex align-items-end">
+                            <p><strong>Loan term (yrs)</strong></p>
+                            <p class="jumbo"><strong><span id="loanTermResult">5</span></strong></p></div>
+                        <div class="text-center pt-4">
+                            <a href="/apply"><button class="btn comman-btn green-btn mb-3 mb-md-0 mx-auto">Apply Now</button></a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="my-4 d-flex flex-column align-items-center bottom-text">
+                    <p><strong>We’re here for you.</strong> Get your available rate today with <strong>no impact to your credit score.</strong></p>
+                    <a href="/apply"><button class="btn comman-btn green-btn mb-3 mb-md-0">Get Started</button></a>
+                
+                    </div>
+                <div class="d-none d-md-block">
+                <div class="schedule amort-schedule d-none mt-4 p-4">
+                            <h4>Amortization Schedule</h4>
+                            <div class="table d-flex align-items-center">
+                                <div class="col-md-2">
+                                    <p>Payment Date</p>
+                                </div>
+                                <div class="col-md-2">
+                                    <p>Payment</p>
+                                </div>
+                                <div class="col-md-2">
+                                    <p>Principal</p>
+                                </div>
+                                <div class="col-md-2">
+                                    <p>Interest</p>
+                                </div>
+                                <div class="col-md-2">
+                                    <p>Total Interest</p>
+                                </div>
+                                <div class="col-md-2">
+                                    <p>Balance</p>
+                                </div>
+                            </div>
+                                @*<AmortSchedule v-for="(item,idx) in AmortItems" :key="idx" v-bind="item"/>*@
+                        </div>
+                </div>
+            </div>
+            </div>
+            <div class="bg-white toggle-3-hidden text-lg-start mb-4 px-md-5 d-none">
+                <div class="col-lg-12 col-md-12">
+                <div class="debt-section text-center">
+                <div class="debt-question mb-4 d-flex flex-column align-items-md-center">
+                    <h3 class="col-md-12 lh-sm">Personal Loan Calculator</h3>
+                </div>
+                </div>
+                </div>
+            </div>
+            
+        </div>
+        </div>
+        </section>
+        <div class="check-rate position-relative d-none">
+                <div class="container text-center pb-3 pb-md-5 pt-md-5">
+                <h3><strong>We're here for you.</strong><br class="d-md-none"/> Get your available rate today with <strong>no impact to your credit score.</strong></h3>
+                <div class="debt-question">
+                    <a href="/apply"><button class="btn yellow-btn comman-btn mx-auto" click="redirectToCheckRate()">CHECK MY RATE</button></a>
+                </div>
+                <p class="pb-2 col-md-8 m-auto">This calculator is meant for educational purposes only. It is a tool to estimate monthly payments solely based on the information you provide. The loan rates, amounts, monthly payments, and terms are not guaranteed and do not constitute a credit offer.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+<script type="text/javascript" asp-add-nonce="true">
+
+function toggleCalc(section) {
+    switch (section) {
+                case 1:
+                    this.toggleOneHidden = !this.toggleOneHidden
+                    if (this.toggleOneHidden) {
+                        document.querySelector('.toggle-1').src='/images/up.svg';
+                    }
+                    else {
+                        document.querySelector('.toggle-1').src='/images/down.svg'
+                    }
+                    document.querySelector('.toggle-1-content').classList.toggle("d-none");
+                    document.querySelector('.toggle-1-hidden').classList.toggle("d-none");
+                    break;
+                    case 2:
+                    this.toggleTwoHidden = !this.toggleTwoHidden
+                    if (this.toggleTwoHidden) {
+                        document.querySelector('.toggle-2').src='/images/up.svg';
+                    }
+                    else {
+                        document.querySelector('.toggle-2').src='/images/down.svg'
+                    }
+                    document.querySelector('.toggle-2-content').classList.toggle("d-none");
+                    document.querySelector('.toggle-2-hidden').classList.toggle("d-none");
+                    break;
+    
+                    case 3:
+                    this.toggleThreeHidden = !this.toggleThreeHidden
+                    if (this.toggleThreeHidden) {
+                        document.querySelector('.toggle-3').src='/images/up.svg';
+                    }
+                    else {
+                        document.querySelector('.toggle-3').src='/images/down.svg'
+                    }
+                    document.querySelector('.toggle-3-content').classList.toggle("d-none");
+                    document.querySelector('.toggle-3-hidden').classList.toggle("d-none");
+                    break;
+            
+                default:
+                    break;
+            }
+}
+function resetPayOff() {
+        totalDebt = 0;
+        $('#totalDebt').val("");
+        $('#payoffTotalInterest').text("0.00");
+        $('#payoffMonthlyPayment').text("0.00");
+        $('#consolidationTotalInterest').text("0.00");
+        $('#consolidationMonthlyPayment').text("0.00");
+        $('#payoffTotalCost').text("0.00");
+        $('#consolidationTotalCost').text("0.00");
+        $('#consolidationTotalSavings').text("0.00");
+    }
+function calcPayOff() {
+    var totalDebt = $("#totalDebt").val()
+    totalDebt = Number(totalDebt.replace(/[^0-9.-]+/g,""));
+    if (totalDebt <= 0 && totalDebt < 100000) {
+        // this.resetPayOff();
+    }
+    else {
+        var r1 = (.22)/12;
+        var r2 = (.0695)/12;
+        var n1 = 30 * 12;
+        var n2 = 5*12;
+
+        var payOffMonthly = (parseFloat(totalDebt) * r1 * Math.pow(1+r1,n1)) / (Math.pow(1+r1,n1)-1);
+        var consolidationMonthly = (parseFloat(totalDebt) * r2 * Math.pow(1+r2,n2)) / (Math.pow(1+r2,n2)-1);
+        var payOffTotalInterest = payOffMonthly * n1 - parseFloat(totalDebt);
+        var consolidationTotalInterest = payOffMonthly * n2 - parseFloat(totalDebt);
+        var payOffTotalCost = parseFloat(totalDebt) + payOffTotalInterest;
+        var consolidationTotalCost = parseFloat(totalDebt) + consolidationTotalInterest; 
+        var consolidationSavings = payOffTotalCost - consolidationTotalCost;
+
+        // var r = (this.loanInterest * .01)/12;
+        // UPDATE
+        var remaining = totalDebt;
+        var consolRemaining = totalDebt;
+        var totalInterest = 0;
+        var consolTotalInterest = 0;
+        for (let i = 0; i < n1; i++) {
+            var interest= remaining * r1;
+            totalInterest += interest;
+            remaining = remaining - payOffMonthly + interest;
+        }
+        for (let i = 0; i < n2; i++) {
+            var consolInterest= consolRemaining * r2;
+            consolTotalInterest += consolInterest;
+            consolRemaining = consolRemaining - consolidationMonthly + consolInterest;
+        }
+        var payOffTotalInterest = totalInterest
+        var consolidationTotalInterest = consolTotalInterest;
+        var consolidationTotalCost = parseFloat(totalDebt) + consolidationTotalInterest;
+        $('#payoffTotalInterest').text(payOffTotalInterest.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+        $('#payoffMonthlyPayment').text(payOffMonthly.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+        $('#payoffTotalCost').text(payOffTotalCost.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+        $('#consolidationTotalInterest').text(consolTotalInterest.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+        $('#consolidationMonthlyPayment').text(consolidationMonthly.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+        $('#consolidationTotalSavings').text(consolidationSavings.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+        $('#consolidationTotalCost').text(consolidationTotalCost.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+        
+    }
+}
+function resetMinPayment() {
+    this.MinPayItems = [];
+    this.minMonths = 0;
+    $("#minMonths").text(0);
+    this.minTotal = "";
+    $("#minTotal").val('');
+    $("#minInterest").text('0.00');
+    this.minPayment = 15;
+    $("#minPayment").text('15');
+    this.fixedPayment = 15;
+    $("#fixedPayment").val('15');
+    $("#personalMonths").text('0');
+    $("#personalInterest").text('0.00');
+}
+function minPaymentChange() {
+    var minTotal = parseFloat($('#minTotal').val());
+    var minInterestRate = $('#minInterestRate').val();
+    var minCalculated = $('#minCalculated').val();
+    var minPayment = 15;
+    if (minTotal !== "") {
+        if (minCalculated === ".01") {
+            // eslint-disable-next-line no-console
+            // console.log(this.minInterestRate, this.minTotal,'!');
+            minPayment = Math.max(15,parseFloat(minInterestRate) * parseFloat(minTotal) / 12 + (.01 * parseFloat(minTotal)));
+        }
+        else {
+            minPayment = Math.max(15,parseFloat(minCalculated) * parseFloat(minTotal))
+        }
+        $('#minPayment').text(minPayment.toFixed(2));
+    }
+    else {
+        this.minPayment = 15
+        $('#minPayment').text(minPayment.toFixed(2));
+    }
+    $("#fixedPayment").val(minPayment.toFixed(2));
+}
+function calcMinPayment() {
+    var minTotal = $('#minTotal').val();
+    minTotal = Number(minTotal.replace(/[^0-9.-]+/g,""));
+    var minInterestRate = $('#minInterestRate').val();
+    var minCalculated = $('#minCalculated').val();
+    var toggleFixedPayment = $('#fixedPaymentRadio').is(':checked');
+    var fixedPayment = parseFloat($('#fixedPayment').val());
+    /*console.log(minTotal, minInterestRate, minCalculated, toggleFixedPayment, fixedPayment);*/
+    if ((minTotal <= 0 || minTotal > 100000 || minTotal === "") || (fixedPayment <= 0  || fixedPayment === "")) {
+        // this.resetMinPayment();
+    }
+    else {
+        this.MinPayItems = [];
+
+        var totalBalance = parseFloat(minTotal); 
+        var monthlyInterestRate = parseFloat(minInterestRate / 12);
+        var totalInterestPaid = 0;
+        let i = 0;
+        while(totalBalance > 0) {
+            var row = {};
+            row.month = i+1;
+            row.interest = parseFloat(totalBalance * monthlyInterestRate).toFixed(2);
+            if (toggleFixedPayment) {
+                // Use fixed payment
+                row.min = parseFloat(fixedPayment);
+            }
+            else {
+                // Use minPayment
+                row.min = totalBalance * parseFloat(minCalculated);
+                if (minCalculated === ".01") {
+                    row.min = Math.max(15,parseFloat(minInterestRate) * totalBalance / 12 + (.01 * totalBalance));
+                }
+                if (minCalculated === ".01" && totalBalance < 15) {
+                    row.principal = parseFloat(totalBalance);
+                    row.min = parseFloat(row.principal) + parseFloat(row.interest);
+                }
+                if (row.min < 15 && totalBalance > 15) {
+                    row.min = 15;
+                }
+                else if (row.min < 15 && totalBalance < 15) {
+                    row.principal = parseFloat(totalBalance);
+                    row.min = parseFloat(row.principal) + parseFloat(row.interest);
+                }
+            }
+            row.principal = row.min - row.interest
+            row.remaining = totalBalance - row.principal < 0 ? 0: totalBalance - row.principal;
+
+            this.MinPayItems.push(row);
+            totalBalance = row.remaining;
+            totalInterestPaid += parseFloat(row.interest);
+            i++;
+        }
+        $('#minMonths').text(i);
+        $('#minInterest').text(totalInterestPaid.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+        var personalRate = .0695 / 12;
+        var personalTerm = 5 * 12;
+        var loanMonthly = (parseFloat(minTotal) * personalRate * Math.pow(1+personalRate,personalTerm)) / (Math.pow(1+personalRate,personalTerm)-1);
+        
+        var remaining = parseFloat(minTotal);
+        var totalInterest = 0;
+        for (let i = 0; i < personalTerm; i++) {
+            var row = {};
+            row.payment= loanMonthly;
+            
+            row.interest= remaining * personalRate;
+            row.principal= loanMonthly - row.interest;
+            totalInterest += row.interest;
+            row.totalInterest = totalInterest;
+            remaining = remaining - loanMonthly + row.interest;
+            row.balance= remaining;
+        }
+        $('#personalMonths').text(personalTerm);
+        $('#personalInterest').text(totalInterest.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+    }
+}
+function resetPersonalLoan() {
+    this.AmortItems = [];
+    this.loanTotalInterest = 0;
+    $("#totalInterestPaid").text("0.00");
+    this.loanAmount = "";
+    $("#loanAmount").val("");
+    $("#principalPaid").text("0");
+    this.loanMonthly= 0.00;
+    $("#estimatedPayment").text("0");
+}
+function calcPersonalLoan() {
+    var loanAmount = $('#loanAmount').val();
+    loanAmount = Number(loanAmount.replace(/[^0-9.-]+/g,""));
+    var loanTerm = $('#loanTerm').val();
+    var loanInterest = $('#loanInterest').val();
+    this.AmortItems = [];
+    console.log(loanAmount);
+    if (loanAmount <= 0 || loanAmount === "" || loanAmount > 100000 || loanInterest <= 0  || loanInterest === "" || loanTerm < 3 || loanTerm > 12 || loanTerm === "") {
+        // this.resetPersonalLoan();
+    }
+    else {
+        var r = (loanInterest * .01)/12;
+        var n = loanTerm*12;
+        var loanMonthly = (parseFloat(loanAmount) * r * Math.pow(1+r,n)) / (Math.pow(1+r,n)-1);
+
+        var remaining = loanAmount;
+        var totalInterest = 0;
+        for (let i = 0; i < n; i++) {
+            var row = {};
+            var now = new Date();
+            var current = new Date(now.getFullYear(), now.getMonth()+(i+1), 1)
+            var nextMonth = current.toLocaleString('en-US',{month: 'short'});
+            var year = current.getFullYear();
+            row.date = nextMonth + " " + year;
+            row.payment= loanMonthly;
+            
+            row.interest= remaining * r;
+            row.principal= loanMonthly - row.interest;
+            totalInterest += row.interest;
+            row.totalInterest = totalInterest;
+            remaining = remaining - loanMonthly + row.interest;
+            row.balance= remaining;
+
+            this.AmortItems.push(row);
+        }
+        var loanTotalInterest = totalInterest;
+        $("#principalPaid").text(loanAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+        $("#totalInterestPaid").text(loanTotalInterest.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+        $("#estimatedPayment").text(loanMonthly.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+    }
+}
+window.addEventListener("load", function () {
+$( document ).ready(function() {
+    document.querySelectorAll('.toggle-btn').forEach((item,key) => {
+        item.addEventListener('click',()=> {
+            toggleCalc(key+1) 
+        });
+    });
+    
+    var totalDebt = 0;
+    $("#totalDebt").keyup(function (e) {
+        totalDebt = $(this).val();
+        $("#minTotal").val(totalDebt);
+        $("#loanAmount").val(totalDebt);
+        calcPayOff(); 
+        calcMinPayment();
+        calcPersonalLoan();
+    });
+    new Cleave('#totalDebt', {
+        numeral: true,
+        prefix: '$'
+    });
+    new Cleave('#minTotal', {
+        numeral: true,
+        prefix: '$'
+    });
+    new Cleave('#loanAmount', {
+        numeral: true,
+        prefix: '$'
+    });
+/*    $("#totalDebt").change(function (e) {
+        const formatter = new Intl.NumberFormat("en-US", {style: "currency", currency: "USD"});
+        $("#totalDebt").val(formatter.format(totalDebt));
+    });*/
+    $("#minTotal").keyup(function () {
+         calcMinPayment();
+    });
+    $("#loanAmount").keyup(function () {
+        calcPersonalLoan(); 
+    });
+    $("#calcPayOff").on("click",function(){
+        calcPayOff();
+    });
+    $("#resetPayOff").on("click", function (){
+        resetPayOff(); 
+    });
+    $("#minPaymentRadio").on("change", function () {
+        document.querySelector('.fixed-payment').classList.toggle('d-none');
+    });
+    $("#fixedPaymentRadio").on("change", function () {
+        document.querySelector('.fixed-payment').classList.toggle('d-none');
+    });
+    $("#fixedPayment").on("change", function () {
+        var fixedPayment = $("#fixedPayment").val();
+        var minPayment = $("#minPayment").text();
+        if (fixedPayment < parseFloat(minPayment)) {
+            $("#fixedPayment").val(minPayment);    
+        }
+    });
+    $("#minTotal").on("change", function () {
+        minPaymentChange();
+    });
+    $("#minCalculated").on("change", function () {
+        minPaymentChange();
+    });
+    //minTotal, fixedPayment, minInterestRate, toggleFixedPayment, minCalculated
+    $("#resetMinPayment").on("click", function () {
+       resetMinPayment(); 
+    });
+    $('#calcMinPayment').on("click", function () {
+        calcMinPayment();
+    });
+    $("#loanTerm").on("change", function () {
+        $("#loanTermResult").text($("#loanTerm").val()); 
+    });
+    $("#calcPersonalLoan").on("click", function () {
+        calcPersonalLoan(); 
+    });
+    $("#resetPersonalLoan").on("click", function () {
+        resetPersonalLoan(); 
+    });
+});
+});
+
+
+</script>
+<!-- page banner section desgin end -->
+

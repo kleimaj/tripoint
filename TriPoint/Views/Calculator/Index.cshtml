@@ -1,0 +1,361 @@
+﻿@{
+    ViewData["Title"] = "Calculator";
+}
+
+<div>
+    @await Html.PartialAsync("Partials/_MainContent")
+</div>
+
+<style asp-add-nonce="true">
+.pg-banner {
+    position: relative;
+    background: rgba(0, 0, 0, 0) linear-gradient(358deg, #e7f3fc 0%, rgba(255, 255, 255, .0509803922) 100%) 0% 0%;
+    padding: 0;
+}
+.pg-banner::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url(images/Triangle-Pattern_TPL.webp);
+    width: 100%;
+    z-index: -1;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+    .schedule .table {
+      border-top: 1px solid #b1b7c5;
+      border-bottom: 1px solid #b1b7c5;
+      margin-bottom: 0;
+    }
+    .schedule .table p {
+      margin: 0;
+      margin: 10px;
+    }
+    .schedule .table-entry {
+      border-bottom: 1px solid #b1b7c5;
+    }
+    .schedule .table-entry p {
+      margin: 10px;
+      margin-top: 5px;
+    }
+    .backdrop {
+     /* background-color: white;*/
+    }
+    .border-radius-card {
+      border-radius: 8px 8px 0 0;
+  box-shadow: 0 0 10px -6px;
+  background: white;
+  padding: 15px;
+      
+    }
+    .calc-border {
+    border: 2px solid #CCCCCC;
+    border-radius: 5px;
+    padding: 2rem;
+    }
+    .toggle-btn {
+      background-color: #BA03FC;
+      border: none;
+      width: 100%;
+      border-radius: 8px 8px 0 0;
+    }
+    .toggle-btn img {
+      margin: 10px;
+    }
+    .debt-question {
+      margin-top: 20px;
+    }
+    .debt-question h3 {
+      font-size: 35px;
+      line-height: 40px; 
+      font-weight: 600;
+      color: #5F2F90;
+      position: relative;
+    }
+    .debt-question p {
+      font-size: 25px;
+      line-height: 32px;
+      color: black;
+      margin: 0;
+      font-family: Poppins;
+    }
+    .debt-question a {
+      font-size: 25px;
+      color: black;
+      text-decoration: underline;
+    }
+    .debt-question .form-label {
+      background: #ffffff;
+      padding: 0 6px !important;
+      font-size: 12px !important;
+      top: 0 !important;
+      height: auto !important;
+      left: 13px !important;
+      -webkit-transform: translateY(-50%) scale(0.9) !important;
+      transform: translateY(-50%) scale(0.9) !important;
+      color: #3066BE;
+    }
+    .debt-question .form-label.percent {
+      left: 85% !important;
+      top: 28px !important;
+      font-size: 18px !important;
+    }
+    .debt-question .form-control {
+      border: 1px solid #A3CD39 !important;
+    }
+    .debt-section .custom-row .form-control {
+      padding:  18px 22px;
+    }
+    .custom-form .custom-row label {
+      color: #5F2F90;
+    }
+    .debt-question .form-control::placeholder {
+      color: black !important;
+      opacity: 0.8;
+    }
+    .error-message {
+      position: relative;
+    }
+    .debt-question .form-check {
+      margin-bottom: 10px;
+      font-family: Poppins;
+    }
+    .debt-question .form-check input {
+      margin-top: 0 !important;
+      width: 21px;
+      height: 21px;
+    }
+    .debt-question .form-check label {
+      height: auto !important;
+      padding: 0 10px !important;
+      text-indent: 1.5rem;
+      top: 40%;
+    }
+    .debt-question .btn {
+      font-weight: bold;
+      font-size: 20px;
+      min-width: 200px;
+    }
+    .debt-question .btn.blue {
+      background-color: #A6E1FA;
+      color: #2E0A46;
+    }
+    .debt-question .btn.clear {
+      color: #5F2F90;
+      border: 2px solid #5F2F90;
+      font-weight: bold;
+      border-radius: 25px;
+    }
+    .debt-section.purple {
+      border: 2px solid #ACD2ED;
+    }
+    .debt-section.purple .header {
+      background: #ACD2ED;
+      color: black !important;
+    }
+    .debt-section.purple p {
+      color: black;
+    }
+    .debt-section.purple h5 {
+      color: black;
+    }
+    .debt-section.purple h1 {
+      color: black;
+    }
+    .debt-section .link {
+      color: #0d6efd !important;
+    }
+    .debt-section.blue {
+      border: 2px solid #5F2F90;
+    }
+    .debt-section.green {
+      border: 2px solid #A3CD39;
+    }
+    .debt-section.blue .header {
+      background: #5F2F90;
+      color: white;
+    } 
+    .debt-section.blue p {
+      color: #0A210F;
+    }
+    .debt-section.blue h5 {
+      color: #0A210F;
+    }
+    .debt-section.blue h1 {
+      color: #0A210F;
+    }
+    .debt-section.box {
+      border-radius: 8px;
+      text-align: center;
+    }
+    .debt-section.box .header {
+      text-align: center;
+      font-size: 25px;
+      padding: 15px;
+      border-radius: 4px 4px 0 0;
+      font-weight: bold;
+    }
+    .debt-section.box p {
+      padding: 0 15px;
+    }
+    .debt-section.box .savings h5 {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .debt-section.box .savings h1 {
+      font-weight: bold;
+      font-size: 45px;
+      padding-bottom: 10px;
+    }
+    .debt-section.box .savings p {
+      padding: 0 15px;
+    }
+    .debt-section.box .box-row {
+      border-bottom: 1px solid gray;
+      justify-content: space-between;
+    }
+    .debt-section.box .box-row p {
+      white-space: nowrap;
+      margin-bottom: 0.5rem;
+      margin-top: 1rem;
+      padding: 0;
+      font-family: 18px;
+    }
+    .bottom-text {
+      font-size: 25px;
+    }
+    .debt-section.box .box-row p.jumbo {
+      font-size: 28px;
+      padding: 0;
+    }
+    .debt-section.box-result {
+      padding: 15px;
+      border: 2px solid #5f2f90;
+    }
+    .debt-section .custom-row strong { 
+      color: #5F2F90;
+    }
+    .check-rate {
+      background-color: #536380; 
+    }
+    .check-rate img { 
+      width: 100%; 
+    }  
+    .check-rate h3 {
+      font-size: 25px;
+      padding: 10px;
+      color: white;
+    }
+    .check-rate .debt-question {
+      margin-bottom: 25px;
+    }
+    .check-rate p {
+      font-size: 14px;
+      color: white;
+    }
+    .check-rate:before {
+      position: absolute;
+      content: ' ';
+      width: 5%;
+      height: 100%;
+      background: #54D6FB;
+    }
+    @@media (max-width: 1199px) {
+      .debt-block {
+        padding: 100px 0 30px;
+        margin-top: -130px;
+        margin-bottom: 0;
+      }
+      .debt-block .debt-question h3 {
+        font-size: 32px;
+        line-height: 37px;
+      }
+      .debt-block .debt-question p {
+        font-size: 22px;
+        line-height: 28px;
+      }
+    }
+    @@media (min-width: 991px) {
+      .backdrop {
+        margin-top: 5vh;
+      }
+      .debt-question h3 {
+        font-size: 45px;
+      }
+      .debt-question .loan-info {
+        font-size: 25px;
+      }
+      .debt-question p {
+        font-size: 20px;
+      }
+      .debt-question .form-label.percent {
+        left: 94% !important;
+        color: black !important;
+      }
+    }
+    @@media (min-width: 1200px) {
+      .backdrop {
+        margin-top: 15vh;
+      }
+    }
+    @@media (min-width: 1200px) {
+      .backdrop {
+        margin-top: 20vh;
+      }
+    }
+    @@media (max-width: 425px) {
+      .debt-block {
+        padding: 0 !important;
+      }
+    }
+    @@media (max-width: 767px) {
+      .backdrop {
+        margin-top: 5vh;
+      }
+      .calc-border {
+        padding: 0;
+        border: none;
+      }
+      .debt-block {
+        clip-path: unset;
+        padding: 33px 10px 0;
+        margin: 0 auto;
+      }
+      .debt-block .debt-question h3 {
+        font-size: 28px;
+        line-height: normal;
+      }
+      .debt-block .debt-question p {
+        font-size: 18px;
+        line-height: 25px;
+      }
+      .debt-block .debt-question a {
+        font-size: 18px;
+        color: black;
+        text-decoration: underline;
+      }
+      .check-rate h3{
+         padding-top: 60px;
+      }
+      .check-rate:before {
+        position: absolute;
+        content: ' ';
+        width: 100%;
+        height: 30px;
+        background: #54D6FB;
+      }
+    }
+
+</style>
