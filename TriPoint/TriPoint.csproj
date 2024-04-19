@@ -29,7 +29,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <AdditionalFiles Include="Views\ThankYou\Partials\_CustomerFooter.cshtml" />
+        <AdditionalFiles Include="Views\Calculator\Partials\_MainContent.cshtml" />
         <AdditionalFiles Include="Views\ThankYou\Partials\_MainContent.cshtml" />
     </ItemGroup>
 
@@ -37,10 +37,6 @@
         <Content Include="..\.dockerignore">
             <Link>.dockerignore</Link>
         </Content>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="wwwroot\scss\" />
     </ItemGroup>
 
     <ItemGroup>

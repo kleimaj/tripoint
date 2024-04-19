@@ -1,26 +1,45 @@
 ﻿<!-- great-news section start -->
 <section class="great-news">
-    <div class="custom-padding">
+    
+<div class="top-experience-block">
+    <div class="top-container">
+        <div class="row">
+            <div class="my-4 d-flex flex-column justify-content-center align-items-center">
+            <h3 class="mt-4">Easy to apply. Have a question?<br/> Give us a call at <nobr><a href="tel:1-877-800-5345">1-877-800-5345</a></nobr></h3>
+                <div class="top-your-self top">
+                    <ul>
+                        <li>Consolidate your debt to one monthly payment</li>
+                        <li>Get out of the monthly minimum payments trap</li>
+                        <li>No-risk, no credit score impact to see your offers</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="py-md-4 py-4">
         <div id="submit-form-container" class="container">
             <div class="news-details text-center">
-                <h1 class="title m-0 blue-text">
+                @*<h1 class="title m-0 blue-text">
                     Well done! You're on your way to <br>
                     <i>Better rates, less stress and more options!</i>
                 </h1>
-                <h3 id="checkbanner">Check your offers in 1 minute <br/> or call us at <a id="calllink" href="tel:8778005343">1-877-800-5343</a> </h3>
-               <!-- <p>
+                <h3 id="checkbanner">Check your offers in 1 minute <br/> or call us at <a id="calllink" href="tel:8778005345">1-877-800-5345</a> </h3>
+                *@
+                <!-- <p>
                     <b>Please note: The security of your personal information is very important to us.</b> <br>
                     We employ high levels of encryption to keep your information safe and confidential. <br>
                     <b>Verify your information by completing any empty fields then click VERIFY.</b>
                 </p>-->
-                <p id="checkoffers" class="mb-0">
+
+                @*<p id="checkoffers" class="mb-0">
                     <b>Checking your offers does not impact your credit score</b>
-                </p>
+                </p>*@
             </div>
             <div class="row justify-content-center">
                 <div class="col-xl-10 col-lg-12 col-md-12">
                     <div class="custom-form">
-                        <h3 id="offercodes" class="text-center">If you received an Offer Code, enter it below.</h3>
+                        @*<h3 id="offercodes" class="text-center">If you received an Offer Code, enter it below.</h3>*@
                         @await Html.PartialAsync("Partials/_ApplyForm")
                     </div>
                 </div>
@@ -36,6 +55,23 @@
     margin: auto;
 
 }
+
+.top-experience-block a {
+     color:  black;
+     text-decoration: underline;
+}
+
+.top-your-self ul li::before {
+position: absolute;
+    content: '';
+    left: 0;
+    top: 0;
+    width: 8px;
+    height: 8px;
+    font-weight: 700;
+    color: #a3cd39;
+    font-family: 'FontAwesome';
+}
   .top-your-self ul {
         margin: 0;
         padding: 0;
@@ -50,7 +86,7 @@
         padding-left: 24px;
         font-weight: 500;
     }
-     .top-your-self ul li::before {
+/*     .top-your-self ul li::before {
          position: absolute;
          content: '\f00c';
          left: 0;
@@ -60,7 +96,7 @@
          font-weight: 700;
          color: #1d230d;
          font-family: 'FontAwesome';
-    }
+    }*/
 
     i {
         font-weight: 400;
@@ -101,11 +137,47 @@
       padding: 178px 0 0;
      	 
      }
+     
+        .top-your-self.top {
+            width: 507px;
+        }
+           .top-your-self.top li {
+               font-size: 21px !important;
+               padding-left: 34px;
+               line-height: 45px;
+           }
+        .top-experience-block h3 {
+            font-size: 35px;
+        }
     @@media (max-width: 1499px) {
     .great-news {
       	 position: relative;
       	 padding: 0;
-      }
+      }    
+     }
+     @@media (max-width: 767px) {
+     .top-your-self.top {
+         width: 406px;
+     }
+     .top-experience-block h3 {
+         font-size: 28px;
+     }
+           .top-your-self.top li {
+               font-size: 16px !important;
+               padding-left: 28px;
+           }
+     }
+     @@media(max-width: 408px) {
+             .top-experience-block h3 {
+                 font-size: 23px;
+             }
+             .top-your-self.top {
+                width: 333px;
+             }
+             .top-your-self.top li {
+                font-size: 14px !important;
+                line-height: 26px;
+             }
      }
      
 </style>
