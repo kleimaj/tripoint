@@ -1123,8 +1123,13 @@ div#banner-person {
             width: 100%;
             -webkit-clip-path: polygon(0 0,100% 0,100% 89%,18% 100%,0 76%);
             clip-path: polygon(0 0,100% 0,100% 89%,20% 100%,0 83%);
-            height: 690px;
+            
         }
+    }
+     @@media (max-width: 355px) {
+    	.banner-sec::after {
+    		height: 665px;
+    	}
     }
      
 </style>
